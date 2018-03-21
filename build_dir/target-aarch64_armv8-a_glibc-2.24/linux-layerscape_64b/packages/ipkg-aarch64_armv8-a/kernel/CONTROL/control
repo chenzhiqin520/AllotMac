@@ -1,0 +1,9 @@
+Package: kernel
+Version: 4.4.92-1-fd65f1e459e56f21812c6aad0042812d
+Depends: libc, libssp, librt, libpthread
+Source: package/linux
+License: GPLv2
+Section: sys
+Architecture: aarch64_armv8-a
+Installed-Size: 105
+Description:  Virtual kernel package

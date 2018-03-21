@@ -1,0 +1,12 @@
+Package: libwolfssl
+Version: 3.12.2-1
+Depends: libc, libssp, librt, libpthread
+Provides: libcyassl
+Source: feeds/base/package/libs/wolfssl
+License: GPL-2.0+
+Section: libs
+Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
+Architecture: aarch64_armv8-a
+Installed-Size: 171230
+Description:  wolfSSL (formerly CyaSSL) is an SSL library optimized for small
+ footprint, both on disk and for memory use.

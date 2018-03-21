@@ -1,0 +1,9 @@
+Package: libiptc
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, libip4tc, libip6tc, libxtables
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 1289
+Description:  IPv4/IPv6 firewall - shared libiptc library (compatibility stub)

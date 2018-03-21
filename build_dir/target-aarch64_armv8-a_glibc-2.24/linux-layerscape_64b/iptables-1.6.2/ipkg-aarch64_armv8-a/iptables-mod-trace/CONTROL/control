@@ -1,0 +1,13 @@
+Package: iptables-mod-trace
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-debug
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 161
+Description:  iptables extension for TRACE target
+ 
+ Includes:
+ - libxt_TRACE
+ 

@@ -1,0 +1,251 @@
+libcurl_la-imap.lo: imap.c \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/stdc-predef.h \
+ curl_setup.h curl_config.h ../include/curl/curl.h \
+ ../include/curl/curlver.h ../include/curl/system.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/types.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/features.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/cdefs.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/wordsize.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/gnu/stubs.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/gnu/stubs-lp64.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/types.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/typesizes.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/time.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include/stddef.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/endian.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/endian.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/byteswap.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/byteswap-16.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/select.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/select.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/sigset.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/time.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/select2.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/sysmacros.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/pthreadtypes.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/socket.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/uio.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/uio.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/socket.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/socket_type.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/sockaddr.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm/socket.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/socket.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm/sockios.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/sockios.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/socket2.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/stdio.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/libio.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/_G_config.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/wchar.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include/stdarg.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdio_lim.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/sys_errlist.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdio2.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/limits.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include-fixed/limits.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/posix1_lim.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/local_lim.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/linux/limits.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/posix2_lim.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/xlocale.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/time.h \
+ ../include/curl/easy.h ../include/curl/multi.h ../include/curl/curl.h \
+ ../include/curl/typecheck-gcc.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/assert.h \
+ curl_setup_once.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/stdlib.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/waitflags.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/waitstatus.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/alloca.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdlib-float.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdlib.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/string.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/string3.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/ctype.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/errno.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/errno.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/linux/errno.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm/errno.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/errno.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/errno-base.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/stat.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stat.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include/stdbool.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/unistd.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/posix_opt.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/environments.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/confname.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/getopt.h \
+ /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/unistd.h \
+ curl_ctype.h
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/stdc-predef.h:
+
+curl_setup.h:
+
+curl_config.h:
+
+../include/curl/curl.h:
+
+../include/curl/curlver.h:
+
+../include/curl/system.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/types.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/features.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/cdefs.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/wordsize.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/gnu/stubs.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/gnu/stubs-lp64.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/types.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/typesizes.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/time.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include/stddef.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/endian.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/endian.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/byteswap.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/byteswap-16.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/select.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/select.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/sigset.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/time.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/select2.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/sysmacros.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/pthreadtypes.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/socket.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/uio.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/uio.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/socket.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/socket_type.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/sockaddr.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm/socket.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/socket.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm/sockios.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/sockios.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/socket2.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/stdio.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/libio.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/_G_config.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/wchar.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include/stdarg.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdio_lim.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/sys_errlist.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdio2.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/limits.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include-fixed/limits.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/posix1_lim.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/local_lim.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/linux/limits.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/posix2_lim.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/xlocale.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/time.h:
+
+../include/curl/easy.h:
+
+../include/curl/multi.h:
+
+../include/curl/curl.h:
+
+../include/curl/typecheck-gcc.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/assert.h:
+
+curl_setup_once.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/stdlib.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/waitflags.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/waitstatus.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/alloca.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdlib-float.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stdlib.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/string.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/string3.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/ctype.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/errno.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/errno.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/linux/errno.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm/errno.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/errno.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/asm-generic/errno-base.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/sys/stat.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/stat.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/include/stdbool.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/unistd.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/posix_opt.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/environments.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/confname.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/getopt.h:
+
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include/bits/unistd.h:
+
+curl_ctype.h:

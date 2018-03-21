@@ -1,0 +1,1172 @@
+Package: AllotMac
+Version: 2018-03-20-1.0
+Depends: libc, libssp, librt, libpthread, libcurl, libpthread, libjson-c
+Source: package/AllotMac
+Section: base
+Architecture: aarch64_armv8-a
+Installed-Size: 5208
+Filename: AllotMac_2018-03-20-1.0_aarch64_armv8-a.ipk
+Size: 5929
+SHA256sum: 95ac74e9fdb8d11c399c4acf202a5df6ba77935b40d9d9549fb331ba0b33de06
+Description:  Run in LS1012A development board,This is a Allot Mac client,Allot Mac to break-end server  
+
+Package: curl
+Version: 7.59.0-1
+Depends: libc, libssp, librt, libpthread, libcurl
+Source: feeds/base/package/network/utils/curl
+License: MIT
+LicenseFiles: COPYING
+Section: net
+Maintainer: Imre Kaloz <kaloz@openwrt.org>
+Architecture: aarch64_armv8-a
+Installed-Size: 43213
+Filename: curl_7.59.0-1_aarch64_armv8-a.ipk
+Size: 43903
+SHA256sum: cc3d4242ef468e3c8b62294e52c85620f80f74d9450499f366de60367b689a9d
+Description:  A client-side URL transfer utility
+
+Package: firewall
+Version: 2018-03-02-8ef12cb5-2
+Depends: libc, libssp, librt, libpthread, libubox, libubus, libuci, libip4tc, libip6tc, libxtables, kmod-ipt-core, kmod-ipt-conntrack, kmod-nf-conntrack6, kmod-ipt-nat
+Source: feeds/base/package/network/config/firewall
+License: ISC
+Section: net
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 47117
+Filename: firewall_2018-03-02-8ef12cb5-2_aarch64_armv8-a.ipk
+Size: 47916
+SHA256sum: 5de332fc1b028eee344db44c1228308e33e7695521bee390cbd494c018f56502
+Description:  This package provides a config-compatible C implementation of the UCI firewall.
+
+Package: ip6tables-extra
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, ip6tables, kmod-ip6tables-extra
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 161
+Filename: ip6tables-extra_1.6.2-1_aarch64_armv8-a.ipk
+Size: 878
+SHA256sum: 996e0c92e347b7788f66a0ed6d2a11b2153d196ecbf75dbfeda9ade40e38fb59
+Description:  IPv6 header matching modules
+
+Package: ip6tables-mod-nat
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, ip6tables, kmod-ipt-nat6
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 161
+Filename: ip6tables-mod-nat_1.6.2-1_aarch64_armv8-a.ipk
+Size: 894
+SHA256sum: 159046d7b40d4fd6c0040def6bbe7889c9eb1a8b66de1ad6818dcba58bc5e42e
+Description:  iptables extensions for IPv6-NAT targets.
+
+Package: ip6tables
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, kmod-ip6tables, iptables
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 211
+Filename: ip6tables_1.6.2-1_aarch64_armv8-a.ipk
+Size: 932
+SHA256sum: df39da681220b1b3c7b4c4d5c5958f9c2e5fb332ab3080ebdc12b04d7f8fa1b7
+Description:  IPv6 firewall administration tool
+
+Package: iptables-mod-checksum
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-checksum
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 161
+Filename: iptables-mod-checksum_1.6.2-1_aarch64_armv8-a.ipk
+Size: 903
+SHA256sum: fdc8f8beac9e42bdd727a58e9565e78d3d96601e895da7e8829596ef5a610a3c
+Description:  iptables extension for the CHECKSUM calculation target
+
+Package: iptables-mod-cluster
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-cluster
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-cluster_1.6.2-1_aarch64_armv8-a.ipk
+Size: 1216
+SHA256sum: 775921acc01aaa264b2f4cf5c374d86004c2f23f270e09bd1bdda6067212a799
+Description:  iptables extensions for matching cluster.
+ 
+ Netfilter (IPv4/IPv6) module for matching cluster
+ This option allows you to build work-load-sharing clusters of
+ network servers/stateful firewalls without having a dedicated
+ load-balancing router/server/switch. Basically, this match returns
+ true when the packet must be handled by this cluster node. Thus,
+ all nodes see all packets and this match decides which node handles
+ what packets. The work-load sharing algorithm is based on source
+ address hashing.
+ 
+ This module is usable for ipv4 and ipv6.
+ 
+ If you select it, it enables kmod-ipt-cluster.
+ 
+ see `iptables -m cluster --help` for more information.
+
+Package: iptables-mod-clusterip
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-clusterip
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-clusterip_1.6.2-1_aarch64_armv8-a.ipk
+Size: 1023
+SHA256sum: ac95efbd3147cb0e4d0898293b7bbe1852b173dc8b723e787492471a4677ea4d
+Description:  iptables extensions for CLUSTERIP.
+ The CLUSTERIP target allows you to build load-balancing clusters of
+ network servers without having a dedicated load-balancing
+ router/server/switch.
+ 
+ If you select it, it enables kmod-ipt-clusterip.
+ 
+ see `iptables -j CLUSTERIP --help` for more information.
+
+Package: iptables-mod-conntrack-extra
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-conntrack-extra
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-conntrack-extra_1.6.2-1_aarch64_armv8-a.ipk
+Size: 948
+SHA256sum: c120a5f27f5034bfcb2aea9f5eac70d6213d7e9a453943d923036befa046b6d0
+Description:  Extra iptables extensions for connection tracking.
+ 
+ Matches:
+ - connbytes
+ - connlimit
+ - connmark
+ - recent
+ - helper
+ 
+ Targets:
+ - CONNMARK
+ 
+
+Package: iptables-mod-extra
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-extra
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-extra_1.6.2-1_aarch64_armv8-a.ipk
+Size: 942
+SHA256sum: 4ae32774e48939f0d037fb130dd2b425a32ad7004a511cdaf1384f023d47bae9
+Description:  Other extra iptables extensions.
+ 
+ Matches:
+ - addrtype
+ - condition
+ - owner
+ - physdev (if ebtables is enabled)
+ - pkttype
+ - quota
+ 
+
+Package: iptables-mod-filter
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-filter
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-filter_1.6.2-1_aarch64_armv8-a.ipk
+Size: 918
+SHA256sum: be42a8a6f753139006b5eaccc9d2d210aad64705da5741af78535e2ad14247cf
+Description:  iptables extensions for packet content inspection.
+ Includes support for:
+ 
+ Matches:
+ - string
+ 
+
+Package: iptables-mod-hashlimit
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-hashlimit
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-hashlimit_1.6.2-1_aarch64_armv8-a.ipk
+Size: 899
+SHA256sum: 7c3bd9852813a00e05298c56123efc5d6bf06d2543c9da8c9606b750c8aebd01
+Description:  iptables extensions for hashlimit matching
+ 
+ Matches:
+ - hashlimit
+ 
+
+Package: iptables-mod-ipopt
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-ipopt
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-ipopt_1.6.2-1_aarch64_armv8-a.ipk
+Size: 976
+SHA256sum: b8ef1837a20cd78f8553145b717573abde1a40d20475fb729e75826b73fe55bd
+Description:  iptables extensions for matching/changing IP packet options.
+ 
+ Matches:
+ - dscp
+ - ecn
+ - length
+ - statistic
+ - tcpmss
+ - unclean
+ - hl
+ 
+ Targets:
+ - DSCP
+ - CLASSIFY
+ - ECN
+ - HL
+ 
+
+Package: iptables-mod-iprange
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-iprange
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-iprange_1.6.2-1_aarch64_armv8-a.ipk
+Size: 901
+SHA256sum: 47e19b95ef1e750b0d95a0eb7b8d38bed6d283f7298cdf1a84247b13d0bf9349
+Description:  iptables extensions for matching ip ranges.
+ 
+ Matches:
+ - iprange
+ 
+
+Package: iptables-mod-ipsec
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-ipsec
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-ipsec_1.6.2-1_aarch64_armv8-a.ipk
+Size: 909
+SHA256sum: 0ec8127d3851e82f1858bdafcae5ce3856d472d07d5cb214c61ac72bcf5fef75
+Description:  iptables extensions for matching ipsec traffic.
+ 
+ Matches:
+ - ah
+ - esp
+ - policy
+ 
+
+Package: iptables-mod-led
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-led
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-led_1.6.2-1_aarch64_armv8-a.ipk
+Size: 898
+SHA256sum: d908427e305e4b48ddbd7ad571987c12992e39d587e9f3c72c7e1a875c5893fb
+Description:  iptables extension for triggering a LED.
+ 
+ Targets:
+ - LED
+ 
+
+Package: iptables-mod-nat-extra
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-nat-extra
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-nat-extra_1.6.2-1_aarch64_armv8-a.ipk
+Size: 916
+SHA256sum: 2bf4599bac1c98e1f37e60a0d241e142fb4192e46fe73b6d50dbe0b5897c6c34
+Description:  iptables extensions for extra NAT targets.
+ 
+ Targets:
+ - MIRROR
+ - NETMAP
+
+Package: iptables-mod-nflog
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-nfnetlink-log, kmod-ipt-nflog
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-nflog_1.6.2-1_aarch64_armv8-a.ipk
+Size: 933
+SHA256sum: 844bed80212723666d980103327063cef4e45eb31fda15251c96eb9413e4631b
+Description:  iptables extension for user-space logging via NFNETLINK.
+ 
+ Includes:
+ - libxt_NFLOG
+ 
+
+Package: iptables-mod-nfqueue
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-nfnetlink-queue, kmod-ipt-nfqueue
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 161
+Filename: iptables-mod-nfqueue_1.6.2-1_aarch64_armv8-a.ipk
+Size: 938
+SHA256sum: 02ad0b66304f05490cba63932806612b85d0a99fd3bf8cfab29a67cbc44fbbcc
+Description:  iptables extension for user-space queuing via NFNETLINK.
+ 
+ Includes:
+ - libxt_NFQUEUE
+ 
+
+Package: iptables-mod-rpfilter
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-rpfilter
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-rpfilter_1.6.2-1_aarch64_armv8-a.ipk
+Size: 915
+SHA256sum: b406e863cc94cb2feaa047f5967b9d94eab462af57da59c2bcba6333d3bfc0ab
+Description:  iptables extensions for reverse path filter test on a packet
+ 
+ Matches:
+ - rpfilter
+ 
+
+Package: iptables-mod-tee
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-tee
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-tee_1.6.2-1_aarch64_armv8-a.ipk
+Size: 885
+SHA256sum: 1cc8848d03e5b3c5634bf902a2044db2c54126b1c1d73afdb011d07c828a51c5
+Description:  TEE iptables extensions.
+ 
+ Targets:
+ - TEE
+ 
+
+Package: iptables-mod-tproxy
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-tproxy
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-tproxy_1.6.2-1_aarch64_armv8-a.ipk
+Size: 919
+SHA256sum: 008fddd8ac0a8e76f70b196326ed7f7d593591ba2fffd0f4ef3d86ae04ca2408
+Description:  Transparent proxy iptables extensions.
+ 
+ Matches:
+ - socket
+ 
+ Targets:
+ - TPROXY
+ 
+
+Package: iptables-mod-trace
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-debug
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 161
+Filename: iptables-mod-trace_1.6.2-1_aarch64_armv8-a.ipk
+Size: 910
+SHA256sum: b2f54e36d3af994e374ce567ffbb73cfe029962450959b368e68aace74181a70
+Description:  iptables extension for TRACE target
+ 
+ Includes:
+ - libxt_TRACE
+ 
+
+Package: iptables-mod-u32
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-u32
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-u32_1.6.2-1_aarch64_armv8-a.ipk
+Size: 886
+SHA256sum: 56ce77decdd5764cd5000ec12d75fc0da29d36916620bee9632509cf1c0496d0
+Description:  U32 iptables extensions.
+ 
+ Matches:
+ - u32
+ 
+
+Package: iptables-mod-ulog
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, iptables, kmod-ipt-ulog
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 160
+Filename: iptables-mod-ulog_1.6.2-1_aarch64_armv8-a.ipk
+Size: 908
+SHA256sum: b0e6e3c295258b9f301daa0e664c2a4aab0e33677f3f489038f605c148046400
+Description:  iptables extensions for user-space packet logging.
+ 
+ Targets:
+ - ULOG
+ 
+
+Package: iptables
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, kmod-ipt-core, libip4tc, libip6tc, libxtables
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: net
+Architecture: aarch64_armv8-a
+Installed-Size: 25065
+Filename: iptables_1.6.2-1_aarch64_armv8-a.ipk
+Size: 25803
+SHA256sum: d61fda58dfa5e8d1867760d777f885d11a7e5e37addedb574bdfbe4cb9c13cf9
+Description:  IP firewall administration tool.
+ 
+ Matches:
+ - icmp
+ - tcp
+ - udp
+ - comment
+ - conntrack
+ - limit
+ - mac
+ - mark
+ - multiport
+ - set
+ - state
+ - time
+ 
+ Targets:
+ - ACCEPT
+ - CT
+ - DNAT
+ - DROP
+ - REJECT
+ - LOG
+ - MARK
+ - MASQUERADE
+ - REDIRECT
+ - SET
+ - SNAT
+ - TCPMSS
+ 
+ Tables:
+ - filter
+ - mangle
+ - nat
+ - raw
+ 
+
+Package: jshn
+Version: 2018-02-08-bb0c830b-1
+Depends: libc, libssp, librt, libpthread, libjson-c, libubox, libblobmsg-json
+Source: feeds/base/package/libs/libubox
+License: ISC
+Section: utils
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 6661
+Filename: jshn_2018-02-08-bb0c830b-1_aarch64_armv8-a.ipk
+Size: 7459
+SHA256sum: 475f9ad8ddc3a0ecc81ad975d42878f4db6e811033f16853795837dbd7fe074b
+Description:  Library for parsing and generating JSON from shell scripts
+
+Package: libblobmsg-json
+Version: 2018-02-08-bb0c830b-1
+Depends: libc, libssp, librt, libpthread, libjson-c, libubox
+Source: feeds/base/package/libs/libubox
+License: ISC
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 3801
+Filename: libblobmsg-json_2018-02-08-bb0c830b-1_aarch64_armv8-a.ipk
+Size: 4540
+SHA256sum: dc94b0428131cd6a8c14e42884bbd84406ee48e6dc0dd1b82cf921be35a87a51
+Description:  blobmsg <-> json conversion library
+
+Package: libcurl
+Version: 7.59.0-1
+Depends: libc, libssp, librt, libpthread, libmbedtls
+Source: feeds/base/package/network/utils/curl
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+Maintainer: Imre Kaloz <kaloz@openwrt.org>
+Architecture: aarch64_armv8-a
+Installed-Size: 107160
+Filename: libcurl_7.59.0-1_aarch64_armv8-a.ipk
+Size: 107768
+SHA256sum: 0b2fd7e0f9a66ac671a8adcb79549f26acc44c93e10f76a7e09c01739a8965fa
+Description:  A client-side URL transfer library
+
+Package: libiconv
+Version: 8
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libiconv
+License: LGPL-2.1
+LicenseFiles: LICENSE
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 168
+Filename: libiconv_8_aarch64_armv8-a.ipk
+Size: 937
+SHA256sum: bcccba92def2bf1ee800b9606a0d0dd814c0f1162de88357c7cbb6c2e24246e1
+Description:  Tiny drop-in replacement for the GNU Character set conversion library
+
+Package: libintl
+Version: 2
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/gettext
+License: FSFULLR
+LicenseFiles: LICENSE
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 166
+Filename: libintl_2_aarch64_armv8-a.ipk
+Size: 919
+SHA256sum: 767fc034839daacb92c114a21bcdbd52bf815d3f3a94e1dba858369627c7db2a
+Description:  Stub header for the GNU Internationalization library
+
+Package: libip4tc
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, libxtables
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 19163
+Filename: libip4tc_1.6.2-1_aarch64_armv8-a.ipk
+Size: 19898
+SHA256sum: b59f3745e67056217cc8f40798c6e2e8a67aeffd04bc556e78f2035f3cc03f25
+Description:  IPv4 firewall - shared libiptc library
+
+Package: libip6tc
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, libxtables
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 17058
+Filename: libip6tc_1.6.2-1_aarch64_armv8-a.ipk
+Size: 17767
+SHA256sum: eba460c312ad31263b104ab7118bfe99ca2aadc59e076617bdb08e494dbd2bfb
+Description:  IPv6 firewall - shared libiptc library
+
+Package: libiptc
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread, libip4tc, libip6tc, libxtables
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 1289
+Filename: libiptc_1.6.2-1_aarch64_armv8-a.ipk
+Size: 2066
+SHA256sum: 60c3766cf7ab2c43635aaaf5f5b1bb608085a4c888931ac495eca76747846b10
+Description:  IPv4/IPv6 firewall - shared libiptc library (compatibility stub)
+
+Package: libjson-c
+Version: 0.12.1-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libjson-c
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 13977
+Filename: libjson-c_0.12.1-1_aarch64_armv8-a.ipk
+Size: 14735
+SHA256sum: 4099f16507ab337109c86627a9b875d60b50d3b6c920b0e782090cba4ad54931
+Description:  This package contains a library for javascript object notation backends.
+
+Package: libjson-script
+Version: 2018-02-08-bb0c830b-1
+Depends: libc, libssp, librt, libpthread, libubox
+Source: feeds/base/package/libs/libubox
+License: ISC
+Section: utils
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 4804
+Filename: libjson-script_2018-02-08-bb0c830b-1_aarch64_armv8-a.ipk
+Size: 5538
+SHA256sum: dfc520c963f8bb38383fa2f47906b4bc45bc4e2f2dc72fc53ff77d6e2a2cd71d
+Description:  Minimalistic JSON based scripting engine
+
+Package: liblua
+Version: 5.1.5-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/utils/lua
+License: MIT
+LicenseFiles: COPYRIGHT
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 62390
+Filename: liblua_5.1.5-1_aarch64_armv8-a.ipk
+Size: 63268
+SHA256sum: 6a039504e8f67a83b1e2cf94b0e46ed8ede8e152a903ca2be87ff2deef0297fb
+Description:  Lua is a powerful light-weight programming language designed for extending 
+ applications. Lua is also frequently used as a general-purpose, stand-alone 
+ language. Lua is free software.
+ This package contains the Lua shared libraries, needed by other programs.
+
+Package: libmbedtls
+Version: 2.7.0-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/mbedtls
+License: GPL-2.0+
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 144633
+Filename: libmbedtls_2.7.0-1_aarch64_armv8-a.ipk
+Size: 145183
+SHA256sum: 0fedc952b5ce13316ba4774d74a88988e5d9b793d2c0358196e6200858c9afa3
+Description:  The aim of the mbedtls project is to provide a quality, open-source
+ cryptographic library written in C and targeted at embedded systems.
+ This package contains the mbedtls library.
+
+Package: libmnl
+Version: 1.0.4-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libmnl
+License: LGPL-2.1+
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 5813
+Filename: libmnl_1.0.4-1_aarch64_armv8-a.ipk
+Size: 7013
+SHA256sum: d0ee415e6d17b27541f5d2177fd75c99e978e2c17c91de0792f76152debe4c9d
+Description:  libmnl is a minimalistic user-space library oriented to Netlink developers.
+ There are a lot of common tasks in parsing, validating, constructing of
+ both the Netlink header and TLVs that are repetitive and easy to get wrong.
+ This library aims to provide simple helpers that allows you to re-use code
+ and to avoid re-inventing the wheel. The main features of this library are:
+ .
+ * Small: the shared library requires around 30KB for an x86-based computer.
+ .
+ * Simple: this library avoids complexity and elaborated abstractions that
+ tend to hide Netlink details.
+ .
+ * Easy to use: the library simplifies the work for Netlink-wise developers.
+ It provides functions to make socket handling, message building, validating,
+ parsing and sequence tracking, easier.
+ .
+ * Easy to re-use: you can use the library to build your own abstraction layer
+ on top of this library.
+ .
+ * Decoupling: the interdependency of the main bricks that compose the library
+ is reduced, i.e. the library provides many helpers, but the programmer is not
+ forced to use them.
+
+Package: libnetfilter-conntrack
+Version: 2017-07-25-e8704326-1
+Depends: libc, libssp, librt, libpthread, libnfnetlink, kmod-nf-conntrack-netlink, libmnl
+Source: feeds/base/package/libs/libnetfilter-conntrack
+License: GPL-2.0+
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 31791
+Filename: libnetfilter-conntrack_2017-07-25-e8704326-1_aarch64_armv8-a.ipk
+Size: 32597
+SHA256sum: 186bb376087e9ec3383bab4e2517ff1c7735d14cd34d53bc7df8caff346a9b3a
+Description:  libnetfilter_conntrack is a userspace library providing a programming
+ interface (API) to the in-kernel connection tracking state table. The
+ library libnetfilter_conntrack has been previously known as
+ libnfnetlink_conntrack and libctnetlink. This library is currently
+ used by conntrack-tools among many other applications.
+
+Package: libnfnetlink
+Version: 1.0.1-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libnfnetlink
+License: GPL-2.0+
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 9045
+Filename: libnfnetlink_1.0.1-1_aarch64_armv8-a.ipk
+Size: 9931
+SHA256sum: 645527d42938bbc471f4ea89532d60dfd31a00842cee170f76490dd687bf6536
+Description:  libnfnetlink is is the low-level library for netfilter related kernel/userspace communication.
+ It provides a generic messaging infrastructure for in-kernel netfilter subsystems
+ (such as nfnetlink_log, nfnetlink_queue, nfnetlink_conntrack) and their respective users
+ and/or management tools in userspace.
+
+Package: libnftnl
+Version: 1.0.9-2
+Depends: libc, libssp, librt, libpthread, libmnl
+Source: feeds/base/package/libs/libnftnl
+License: GPL-2.0+
+Section: libs
+Maintainer: Steven Barth <steven@midlink.org>
+Architecture: aarch64_armv8-a
+Installed-Size: 46474
+Filename: libnftnl_1.0.9-2_aarch64_armv8-a.ipk
+Size: 47135
+SHA256sum: a2d864244e399b5ea6416701a569222e8f5af8288cc94ec196234cdb921d8dfa
+Description:  libnftnl is a userspace library providing a low-level netlink
+ programming interface (API) to the in-kernel nf_tables subsystem.
+
+Package: libnghttp2
+Version: 1.31.0-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/nghttp2
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+Maintainer: Hans Dedecker <dedeckeh@gmail.com>
+Architecture: aarch64_armv8-a
+Installed-Size: 161399
+Filename: libnghttp2_1.31.0-1_aarch64_armv8-a.ipk
+Size: 161635
+SHA256sum: 914f377ae008368d3a88123461d2a9293fd98715abd945d31ee0aab2755ac226
+Description:  C library implementing the framing layer of the HTTP/2 protocol. It can be used to build a HTTP/2-capable HTTP client or server
+
+Package: libnl-tiny
+Version: 0.1-5
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libnl-tiny
+License: LGPL-2.1
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 12662
+Filename: libnl-tiny_0.1-5_aarch64_armv8-a.ipk
+Size: 13381
+SHA256sum: 9d835f4fd7def1065ccd608feb9a196189e0ebddd325a1cd5b42cc7efcf67284
+Description:  This package contains a stripped down version of libnl
+
+Package: libopenssl
+Version: 1.0.2n-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/openssl
+License: OpenSSL
+LicenseFiles: LICENSE
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 628538
+Filename: libopenssl_1.0.2n-1_aarch64_armv8-a.ipk
+Size: 624617
+SHA256sum: de46cf2e040ffffdb03968a22653c4e7d9b8327fcbaf24980dddcfbe4dc7c9bb
+Description:  The OpenSSL Project is a collaborative effort to develop a robust,
+ commercial-grade, full-featured, and Open Source toolkit implementing the Secure
+ Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well
+ as a full-strength general purpose cryptography library.
+ This package contains the OpenSSL shared libraries, needed by other programs.
+
+Package: libubox-lua
+Version: 2018-02-08-bb0c830b-1
+Depends: libc, libssp, librt, libpthread, libubox, liblua
+Source: feeds/base/package/libs/libubox
+License: ISC
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 4388
+Filename: libubox-lua_2018-02-08-bb0c830b-1_aarch64_armv8-a.ipk
+Size: 5136
+SHA256sum: ed9f6d4ee5071c38cd2e0fd09ac6ed9ffcbdfd75eca0aa37532e0e7cf08133b6
+Description:  Lua binding for the OpenWrt Basic utility library
+
+Package: libubox
+Version: 2018-02-08-bb0c830b-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libubox
+License: ISC
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 18999
+Filename: libubox_2018-02-08-bb0c830b-1_aarch64_armv8-a.ipk
+Size: 19722
+SHA256sum: 448142404cb752c85eb802aef4a46921868e0e1e5323a937599834a671e2ef82
+Description:  Basic utility library
+
+Package: libubus-lua
+Version: 2018-01-16-5bae22eb-1
+Depends: libc, libssp, librt, libpthread, libubus, liblua
+Source: feeds/base/package/system/ubus
+License: LGPL-2.1
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 6894
+Filename: libubus-lua_2018-01-16-5bae22eb-1_aarch64_armv8-a.ipk
+Size: 7674
+SHA256sum: 4d176d419882237d4c3caa7d93114914279a392fc41f9e03573862fd3512dd57
+Description:  Lua binding for the OpenWrt RPC client
+
+Package: libubus
+Version: 2018-01-16-5bae22eb-1
+Depends: libc, libssp, librt, libpthread, libubox
+Source: feeds/base/package/system/ubus
+License: LGPL-2.1
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 9530
+Filename: libubus_2018-01-16-5bae22eb-1_aarch64_armv8-a.ipk
+Size: 10280
+SHA256sum: 685d0f39cc808d89077cd389dad1f160eb9b59741b71cec763fddc49a778de66
+Description:  OpenWrt RPC client library
+
+Package: libuci-lua
+Version: 2018-01-01-5beb95da-1
+Depends: libc, libssp, librt, libpthread, libuci, liblua
+Source: feeds/base/package/system/uci
+License: LGPL-2.1
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 6579
+Filename: libuci-lua_2018-01-01-5beb95da-1_aarch64_armv8-a.ipk
+Size: 7328
+SHA256sum: 7f76a77097435a122211db65a29050e255a97dd24157d6dbd724166fe5ee2157
+Description:  Lua plugin for UCI
+
+Package: libuci
+Version: 2018-01-01-5beb95da-1
+Depends: libc, libssp, librt, libpthread, libubox
+Source: feeds/base/package/system/uci
+License: LGPL-2.1
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 15405
+Filename: libuci_2018-01-01-5beb95da-1_aarch64_armv8-a.ipk
+Size: 16143
+SHA256sum: 32ca552fd12e9db51ad5a5763f6ae1a483f3cbac31cdda9250bb5753b6f8ad3f
+Description:  C library for the Unified Configuration Interface (UCI)
+
+Package: libwolfssl
+Version: 3.12.2-1
+Depends: libc, libssp, librt, libpthread
+Provides: libcyassl
+Source: feeds/base/package/libs/wolfssl
+License: GPL-2.0+
+Section: libs
+Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
+Architecture: aarch64_armv8-a
+Installed-Size: 171230
+Filename: libwolfssl_3.12.2-1_aarch64_armv8-a.ipk
+Size: 170622
+SHA256sum: 0375f6a135b96819c5786971be5542051e355698aec5fb0990e8248251705e7f
+Description:  wolfSSL (formerly CyaSSL) is an SSL library optimized for small
+ footprint, both on disk and for memory use.
+
+Package: libxtables
+Version: 1.6.2-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/network/utils/iptables
+License: GPL-2.0
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 38407
+Filename: libxtables_1.6.2-1_aarch64_armv8-a.ipk
+Size: 39150
+SHA256sum: ea595d89af855814a229dd78a94629793c39e80ce9914c440b118f36e0352fef
+Description:  IPv4/IPv6 firewall - shared xtables library
+
+Package: lua-examples
+Version: 5.1.5-1
+Depends: libc, libssp, librt, libpthread, lua
+Source: feeds/base/package/utils/lua
+License: MIT
+LicenseFiles: COPYRIGHT
+Section: lang
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 5299
+Filename: lua-examples_5.1.5-1_aarch64_armv8-a.ipk
+Size: 6166
+SHA256sum: 63067ee0e4b98d6298dcb2a6cf8d93da3a4e305e451541e703202d79377a10de
+Description:  Lua is a powerful light-weight programming language designed for extending 
+ applications. Lua is also frequently used as a general-purpose, stand-alone 
+ language. Lua is free software.
+ This package contains Lua language examples.
+
+Package: lua
+Version: 5.1.5-1
+Depends: libc, libssp, librt, libpthread, liblua
+Source: feeds/base/package/utils/lua
+License: MIT
+LicenseFiles: COPYRIGHT
+Section: lang
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 5141
+Filename: lua_5.1.5-1_aarch64_armv8-a.ipk
+Size: 5980
+SHA256sum: 1684ac79f2c56b700f3d6f3a838d74fe74098e1dd68d21ec06132d03121529a9
+Description:  Lua is a powerful light-weight programming language designed for extending 
+ applications. Lua is also frequently used as a general-purpose, stand-alone 
+ language. Lua is free software.
+ This package contains the Lua language interpreter.
+
+Package: luac
+Version: 5.1.5-1
+Depends: libc, libssp, librt, libpthread, liblua
+Source: feeds/base/package/utils/lua
+License: MIT
+LicenseFiles: COPYRIGHT
+Section: lang
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 5834
+Filename: luac_5.1.5-1_aarch64_armv8-a.ipk
+Size: 6691
+SHA256sum: 28554644be2fca097516119dfa6cab4de7e58d48ab84e38965bd67215f34d534
+Description:  Lua is a powerful light-weight programming language designed for extending 
+ applications. Lua is also frequently used as a general-purpose, stand-alone 
+ language. Lua is free software.
+ This package contains the Lua language compiler.
+
+Package: openssl-util
+Version: 1.0.2n-1
+Depends: libc, libssp, librt, libpthread, libopenssl
+Source: feeds/base/package/libs/openssl
+License: OpenSSL
+LicenseFiles: LICENSE
+Section: utils
+Architecture: aarch64_armv8-a
+Installed-Size: 196492
+Filename: openssl-util_1.0.2n-1_aarch64_armv8-a.ipk
+Size: 192722
+SHA256sum: 57b66bb89df86f3f8ab2d6c240ee230b57e6bc34e4cd55a641a85e454fbe7b74
+Description:  The OpenSSL Project is a collaborative effort to develop a robust,
+ commercial-grade, full-featured, and Open Source toolkit implementing the Secure
+ Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well
+ as a full-strength general purpose cryptography library.
+ This package contains the OpenSSL command-line utility.
+
+Package: rpcd-mod-file
+Version: 2017-12-07-cfe1e75c-1
+Depends: libc, libssp, librt, libpthread, libubus, libubox, rpcd
+Source: feeds/base/package/system/rpcd
+License: ISC
+Section: utils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 5752
+Filename: rpcd-mod-file_2017-12-07-cfe1e75c-1_aarch64_armv8-a.ipk
+Size: 6508
+SHA256sum: 101bcd26cc25774f9f2c8277bb53b48b69340235326f2b52b8cb247cfc1a6e2f
+Description:  Provides ubus calls for file and directory operations.
+
+Package: rpcd-mod-iwinfo
+Version: 2017-12-07-cfe1e75c-1
+Depends: libc, libssp, librt, libpthread, libubus, libubox, rpcd, libiwinfo
+Source: feeds/base/package/system/rpcd
+License: ISC
+Section: utils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 5580
+Filename: rpcd-mod-iwinfo_2017-12-07-cfe1e75c-1_aarch64_armv8-a.ipk
+Size: 6365
+SHA256sum: 76bf28b3c4f06dd5fc5d0f86d84444a195d58c596f4bb7a7813a7441358cc26b
+Description:  Provides ubus calls for accessing iwinfo data.
+
+Package: rpcd-mod-rpcsys
+Version: 2017-12-07-cfe1e75c-1
+Depends: libc, libssp, librt, libpthread, libubus, libubox, rpcd
+Source: feeds/base/package/system/rpcd
+License: ISC
+Section: utils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 3810
+Filename: rpcd-mod-rpcsys_2017-12-07-cfe1e75c-1_aarch64_armv8-a.ipk
+Size: 4586
+SHA256sum: 2a34a822a9c1ca029490a4bc5bf83566ac9c4f96214161d08f2926ade9b7e4e9
+Description:  Provides ubus calls for sysupgrade and password changing.
+
+Package: rpcd
+Version: 2017-12-07-cfe1e75c-1
+Depends: libc, libssp, librt, libpthread, libubus, libubox, libuci, libblobmsg-json
+Source: feeds/base/package/system/rpcd
+License: ISC
+Section: utils
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 19321
+Filename: rpcd_2017-12-07-cfe1e75c-1_aarch64_armv8-a.ipk
+Size: 20072
+SHA256sum: f4b87f47159caa41769de4adb953c9d73990295b2079e6961f7bde980e656d10
+Description:  This package provides the UBUS RPC backend server to expose various
+ functionality to frontend programs via JSON-RPC.
+
+Package: ubus
+Version: 2018-01-16-5bae22eb-1
+Depends: libc, libssp, librt, libpthread, libubus, libblobmsg-json, ubusd
+Source: feeds/base/package/system/ubus
+License: LGPL-2.1
+Section: base
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 6000
+Filename: ubus_2018-01-16-5bae22eb-1_aarch64_armv8-a.ipk
+Size: 6764
+SHA256sum: 35da23232c1b8eaf885bf048e3091cae6cf2fe515a239c95c32365624dddd4fc
+Description:  OpenWrt RPC client utility
+
+Package: ubusd
+Version: 2018-01-16-5bae22eb-1
+Depends: libc, libssp, librt, libpthread, libubox, libblobmsg-json
+Source: feeds/base/package/system/ubus
+License: LGPL-2.1
+Section: base
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 11253
+Filename: ubusd_2018-01-16-5bae22eb-1_aarch64_armv8-a.ipk
+Size: 11995
+SHA256sum: d3c62951ca3a924ce97794fb1c605a4050952985c91577d2671a077032233172
+Description:  OpenWrt RPC daemon
+
+Package: uci
+Version: 2018-01-01-5beb95da-1
+Depends: libc, libssp, librt, libpthread, libuci
+Source: feeds/base/package/system/uci
+License: LGPL-2.1
+Section: base
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 7662
+Filename: uci_2018-01-01-5beb95da-1_aarch64_armv8-a.ipk
+Size: 8425
+SHA256sum: f2df48205f43f2992dad91e71795e820a9402a79bc25577d92ebe143d80d3a7e
+Description:  Utility for the Unified Configuration Interface (UCI)
+
+Package: uhttpd-mod-lua
+Version: 2017-11-04-a235636a-1
+Depends: libc, libssp, librt, libpthread, uhttpd, liblua
+Source: feeds/base/package/network/services/uhttpd
+License: ISC
+Section: net
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 3790
+Filename: uhttpd-mod-lua_2017-11-04-a235636a-1_aarch64_armv8-a.ipk
+Size: 4639
+SHA256sum: f1a016397a08ffb17a79e003c6da76fd2478c86853c2dbbf80b2025200bc8d1c
+Description:  The Lua plugin adds a CGI-like Lua runtime interface to uHTTPd.
+
+Package: uhttpd-mod-ubus
+Version: 2017-11-04-a235636a-1
+Depends: libc, libssp, librt, libpthread, uhttpd, libubus, libblobmsg-json
+Source: feeds/base/package/network/services/uhttpd
+License: ISC
+Section: net
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 5980
+Filename: uhttpd-mod-ubus_2017-11-04-a235636a-1_aarch64_armv8-a.ipk
+Size: 6795
+SHA256sum: 8ad0bcca3d3c638b9f56affd4849c1c22454d117ad2f251e7a17c065d6d596d7
+Description:  The ubus plugin adds a HTTP/JSON RPC proxy for ubus and publishes the
+ session.* namespace and procedures.
+
+Package: uhttpd
+Version: 2017-11-04-a235636a-1
+Depends: libc, libssp, librt, libpthread, libubox, libblobmsg-json, libjson-script
+Source: feeds/base/package/network/services/uhttpd
+License: ISC
+Section: net
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 24829
+Filename: uhttpd_2017-11-04-a235636a-1_aarch64_armv8-a.ipk
+Size: 25576
+SHA256sum: db5b009b04a07d7212a07aeb3ed5f6932636a1a92fe3c236353a56ee22d3fc33
+Description:  uHTTPd is a tiny single threaded HTTP server with TLS, CGI and Lua
+ support. It is intended as a drop-in replacement for the Busybox
+ HTTP daemon.
+
+Package: zlib-dev
+Version: 1.2.11-2
+Depends: libc, libssp, librt, libpthread, zlib
+Source: feeds/base/package/libs/zlib
+License: Zlib
+LicenseFiles: README
+Section: devel
+Architecture: aarch64_armv8-a
+Installed-Size: 75608
+Filename: zlib-dev_1.2.11-2_aarch64_armv8-a.ipk
+Size: 76416
+SHA256sum: 915ada6a67d21598fab4cc8e35325a144fd5070d03998518bd60b81070974f34
+Description:  zlib is a lossless data-compression library.
+ This package includes the development support files.
+
+Package: zlib
+Version: 1.2.11-2
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/zlib
+License: Zlib
+LicenseFiles: README
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 39459
+Filename: zlib_1.2.11-2_aarch64_armv8-a.ipk
+Size: 40285
+SHA256sum: b12cdd65b155d35a9aa5edbc1644cd8e8b6f8d2e0ca0a92f90f9c469dd0c5211
+Description:  zlib is a lossless data-compression library.
+ This package includes the shared library.
+

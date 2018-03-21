@@ -1,0 +1,8 @@
+Package: luci-mod-admin-full
+Version: git-17.290.79498-d3f0685-1
+Depends: libc, libssp, librt, libpthread, luci-base
+Source: feeds/luci/modules/luci-mod-admin-full
+Section: luci
+Architecture: aarch64_armv8-a
+Installed-Size: 77376
+Description:  LuCI Administration - full-featured for full control

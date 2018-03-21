@@ -1,0 +1,441 @@
+Package: iwinfo
+Version: 2018-02-15-223e09bf-1
+Depends: libc, libssp, librt, libpthread, libiwinfo
+License: GPL-2.0
+Section: utils
+Architecture: aarch64_armv8-a
+Installed-Size: 6137
+Filename: iwinfo_2018-02-15-223e09bf-1_aarch64_armv8-a.ipk
+Size: 6910
+SHA256sum: 8f3c7ee3d90decc60f1468dfa4bd4d7435885108d536bd7d76fb206efab72c7c
+Description:  Command line frontend for the wireless information library.
+
+Package: kmod-dnsresolver
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 105
+Filename: kmod-dnsresolver_4.4.92-1_aarch64_armv8-a.ipk
+Size: 811
+SHA256sum: da11f3391428634273b45e9f932cb60814afc5f174c8df6ffc3eb4e4d849ef49
+Description:  In-kernel DNS Resolver
+
+Package: kmod-fs-nfs-common
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 203
+Filename: kmod-fs-nfs-common_4.4.92-1_aarch64_armv8-a.ipk
+Size: 975
+SHA256sum: 207be97af24fe45855a298cfc09cefa4afda6822d064e69f160fb53aab272349
+Description:  Common NFS filesystem modules
+
+Package: kmod-fs-nfs
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-fs-nfs-common, kmod-dnsresolver
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 190
+Filename: kmod-fs-nfs_4.4.92-1_aarch64_armv8-a.ipk
+Size: 975
+SHA256sum: 49fb4b9df614178aea25c2147de8e089244c9b580446a555585cd9bfaf5fa766
+Description:  Kernel module for NFS support
+
+Package: kmod-ipt-conntrack
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-ipt-core, kmod-nf-conntrack
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 2328
+Filename: kmod-ipt-conntrack_4.4.92-1_aarch64_armv8-a.ipk
+Size: 3181
+SHA256sum: ab4220c95b0457bfbf03d31efb0fb20d5048b6053cfbcad607b03283e7d3fd6b
+Description:  Netfilter (IPv4) kernel modules for connection tracking
+ Includes:
+ - conntrack
+ - defrag
+ - iptables_raw
+ - NOTRACK
+ - state
+
+Package: kmod-ipt-core
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-nf-ipt
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 13769
+Filename: kmod-ipt-core_4.4.92-1_aarch64_armv8-a.ipk
+Size: 14655
+SHA256sum: 82abae6efa37d9020f910cfaace976d0362fe9691c4d66d4a76a8b58a645532e
+Description:  Netfilter core kernel modules
+ Includes:
+ - comment
+ - limit
+ - LOG
+ - mac
+ - multiport
+ - REJECT
+ - TCPMSS
+
+Package: kmod-ipt-nat
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-ipt-core, kmod-nf-nat
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 2943
+Filename: kmod-ipt-nat_4.4.92-1_aarch64_armv8-a.ipk
+Size: 3779
+SHA256sum: 8203167ab1606aa3045bd0d306da4c82a299811e0525059066af80d5195d521d
+Description:  Netfilter (IPv4) kernel modules for basic NAT targets
+ Includes:
+ - MASQUERADE
+
+Package: kmod-lib-textsearch
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 3360
+Filename: kmod-lib-textsearch_4.4.92-1_aarch64_armv8-a.ipk
+Size: 4153
+SHA256sum: 2828a8569119505e10039a3a468c1693b0a9e871d55e708fe7fd8f8a1a19d36d
+Description:  Textsearch support
+
+Package: kmod-mii
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 105
+Filename: kmod-mii_4.4.92-1_aarch64_armv8-a.ipk
+Size: 805
+SHA256sum: 3a7878859ee3d2a19d21bf2c83f5e8e12ecb348b69f54ed0a4d8ce44d25dc324
+Description:  MII library
+
+Package: kmod-nf-conntrack
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 35688
+Filename: kmod-nf-conntrack_4.4.92-1_aarch64_armv8-a.ipk
+Size: 36463
+SHA256sum: dbd5557b2e5c6bd9ab6ab16b582711f46bc1e3e64d43501fa9e669e2653f0ee5
+Description:  Netfilter connection tracking
+
+Package: kmod-nf-ipt
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 19621
+Filename: kmod-nf-ipt_4.4.92-1_aarch64_armv8-a.ipk
+Size: 20406
+SHA256sum: 7bba48de8ea9895063983d1f249625b1ebcda840eca319d28fdadf17ffea88fe
+Description:  Iptables core
+
+Package: kmod-nf-nat
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-nf-conntrack, kmod-nf-ipt
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 11206
+Filename: kmod-nf-nat_4.4.92-1_aarch64_armv8-a.ipk
+Size: 11983
+SHA256sum: 2a895eb496eb2de240fae291addd93c22e1c5859b2ac3a02eacd9365c36a0aeb
+Description:  Netfilter NAT
+
+Package: kmod-nf-nathelper-extra
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-nf-nat, kmod-lib-textsearch
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 49461
+Filename: kmod-nf-nathelper-extra_4.4.92-1_aarch64_armv8-a.ipk
+Size: 50422
+SHA256sum: ca5ec5606f65ea1d8111e0467717bca6b86bcf027a1118664f74889ea354726c
+Description:  Extra Netfilter (IPv4) Conntrack and NAT helpers
+ Includes:
+ - amanda
+ - h323
+ - irc
+ - mms
+ - pptp
+ - proto_gre
+ - sip
+ - snmp_basic
+ - tftp
+ - broadcast
+
+Package: kmod-nf-nathelper
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-nf-nat
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 5200
+Filename: kmod-nf-nathelper_4.4.92-1_aarch64_armv8-a.ipk
+Size: 5993
+SHA256sum: 53d0f5838a03d5e29fea3469e0028cdb7682b443d201349823836e44d4270e86
+Description:  Default Netfilter (IPv4) Conntrack and NAT helpers
+ Includes:
+ - ftp
+
+Package: kmod-nls-base
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 105
+Filename: kmod-nls-base_4.4.92-1_aarch64_armv8-a.ipk
+Size: 827
+SHA256sum: 1ccb8cf1dd89d8be35e35695535d3bbdfe239ae75a5f2bd125e1f359359b7427
+Description:  Kernel module for NLS (Native Language Support)
+
+Package: kmod-ppfe
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 37141
+Filename: kmod-ppfe_4.4.92-1_aarch64_armv8-a.ipk
+Size: 37908
+SHA256sum: b40877a071606709de2588ba760b4e06232f190dd899bb4f969358a094d50f54
+Description:  Kernel modules for Freescale PPFE Driver support.
+
+Package: kmod-scsi-core
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d)
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 238
+Filename: kmod-scsi-core_4.4.92-1_aarch64_armv8-a.ipk
+Size: 1007
+SHA256sum: 9a696e69064aba75609bbffe4b66f12459fee539fd6ee282474e3ec2f7f6ba9a
+Description:  SCSI device support
+
+Package: kmod-usb-core
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-nls-base
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 240
+Filename: kmod-usb-core_4.4.92-1_aarch64_armv8-a.ipk
+Size: 1021
+SHA256sum: 832f7029ee3eb2238859fa390507ec293ed536edae2075d8bdcdc5754894f022
+Description:  Kernel support for USB
+
+Package: kmod-usb-dwc3
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-usb-core
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 10131
+Filename: kmod-usb-dwc3_4.4.92-1_aarch64_armv8-a.ipk
+Size: 10672
+SHA256sum: 5451f70a1353a05fc00aa43f24480875a2466b235c0b602604235783645d0c4d
+Description:  This driver provides support for the Dual Role SuperSpeed
+ USB Controller based on the Synopsys DesignWare USB3 IP Core
+
+Package: kmod-usb-storage-extras
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-usb-storage
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 27505
+Filename: kmod-usb-storage-extras_4.4.92-1_aarch64_armv8-a.ipk
+Size: 28377
+SHA256sum: c9a9fd878171b302b9b4f4f5dc340c6113e3019778b5bab61745173902f6aee7
+Description:  Say Y here if you want to have some more drivers,
+ such as for SmartMedia card readers
+
+Package: kmod-usb-storage
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-scsi-core, kmod-usb-core
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 21020
+Filename: kmod-usb-storage_4.4.92-1_aarch64_armv8-a.ipk
+Size: 21448
+SHA256sum: 6f96a0cdf949c850af5db737f61da0fb24800cd5faa2e58fc33fb01dd47ee908
+Description:  Kernel support for USB Mass Storage devices
+
+Package: kmod-usb3
+Version: 4.4.92-1
+Depends: kernel (=4.4.92-1-fd65f1e459e56f21812c6aad0042812d), kmod-usb-core
+License: GPLv2
+Section: kernel
+Architecture: aarch64_armv8-a
+Installed-Size: 52531
+Filename: kmod-usb3_4.4.92-1_aarch64_armv8-a.ipk
+Size: 53259
+SHA256sum: 580e3a4a0b660227b77a774fc218b98d900fe657a8344fdcaa900f807b27d381
+Description:  Kernel support for USB3 (XHCI) controllers
+
+Package: ldconfig
+Version: 2.24-1
+License: GPL-3.0-with-GCC-exception
+Section: utils
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 299848
+Filename: ldconfig_2.24-1_aarch64_armv8-a.ipk
+Size: 300057
+SHA256sum: cb0b6aea9a64838ddc26f01f4a0a99ee88b2ec27349c01efa8884ca89cce3eb0
+Description:  Shared library path configuration
+
+Package: ldd
+Version: 2.24-1
+License: GPL-3.0-with-GCC-exception
+Section: utils
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 2653
+Filename: ldd_2.24-1_aarch64_armv8-a.ipk
+Size: 3424
+SHA256sum: 0fb2f2d32211a109bf6cb8c22f1e497057a3417ca0d4f431cba78425aa3761c0
+Description:  LDD trace utility
+
+Package: libatomic
+Version: 5.4.0-1
+Depends: libgcc
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 5160
+Filename: libatomic_5.4.0-1_aarch64_armv8-a.ipk
+Size: 5906
+SHA256sum: 074be02513aa8d3165eb90798938a292dfd729359e784837beb558ac02da540e
+Description:  Atomic support library
+
+Package: libgcc
+Version: 5.4.0-1
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 31130
+Filename: libgcc_5.4.0-1_aarch64_armv8-a.ipk
+Size: 31808
+SHA256sum: 57add6ec879c5d6d8d805b0cced47661d980aeaa07e90910dfbea021a7a5d9fc
+Description:  GCC support library
+
+Package: libiwinfo-lua
+Version: 2018-02-15-223e09bf-1
+Depends: libc, libssp, librt, libpthread, libiwinfo, liblua
+License: GPL-2.0
+Section: lang
+Architecture: aarch64_armv8-a
+Installed-Size: 5668
+Filename: libiwinfo-lua_2018-02-15-223e09bf-1_aarch64_armv8-a.ipk
+Size: 6472
+SHA256sum: db53ece1d312a084cb57349406f7eafc1e83f6b6e8a713a65b924b13edd26afc
+Description:  This is the Lua binding for the iwinfo library. It provides access to all enabled
+ backends.
+
+Package: libiwinfo
+Version: 2018-02-15-223e09bf-1
+Depends: libc, libssp, librt, libpthread, libuci
+License: GPL-2.0
+Section: libs
+Architecture: aarch64_armv8-a
+Installed-Size: 11377
+Filename: libiwinfo_2018-02-15-223e09bf-1_aarch64_armv8-a.ipk
+Size: 12201
+SHA256sum: 6805b591a368bd2858568081e5663cd216c11188703acd310a948a18cbf7c1b3
+Description:  Wireless information library with consistent interface for proprietary Broadcom,
+ nl80211 and wext driver interfaces.
+
+Package: libpthread
+Version: 2.24-1
+Depends: libgcc
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 39898
+Filename: libpthread_2.24-1_aarch64_armv8-a.ipk
+Size: 40716
+SHA256sum: 42787383438c57ed562265bd0f2e045d07932095d656c09546d338ff6ecfef26
+Description:  POSIX thread library
+
+Package: librt
+Version: 2.24-1
+Depends: libpthread
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 11343
+Filename: librt_2.24-1_aarch64_armv8-a.ipk
+Size: 12110
+SHA256sum: 5f8fe847b1fef845d101c35330befeea7d05d6ede8c11a41334674e1c4185a28
+Description:  POSIX.1b RealTime extension library
+
+Package: libssp
+Version: 5.4.0-1
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 2971
+Filename: libssp_5.4.0-1_aarch64_armv8-a.ipk
+Size: 3695
+SHA256sum: e7917ef719e337140cb515b6ed2c817a86b818649f9b2a664eedf849a9c00a9c
+Description:  GCC support library
+
+Package: libstdcpp
+Version: 5.4.0-1
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 348724
+Filename: libstdcpp_5.4.0-1_aarch64_armv8-a.ipk
+Size: 341398
+SHA256sum: 298192c0428c10c4d03208105bbc77249cb8f4e99149c529b68c44f99eedf069
+Description:  GNU Standard C++ Library v3
+
+Package: libthread-db
+Version: 2.24-1
+License: GPL-3.0-with-GCC-exception
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Architecture: aarch64_armv8-a
+Installed-Size: 170
+Filename: libthread-db_2.24-1_aarch64_armv8-a.ipk
+Size: 929
+SHA256sum: 7fe23897c5c61be576a660a39433792b7b4659359dade87db51f63d3409c28f2
+Description:  POSIX thread library debugging support
+

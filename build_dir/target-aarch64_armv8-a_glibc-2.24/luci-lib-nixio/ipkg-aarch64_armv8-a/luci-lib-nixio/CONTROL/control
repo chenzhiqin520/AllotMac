@@ -1,0 +1,8 @@
+Package: luci-lib-nixio
+Version: git-17.290.79498-d3f0685-1
+Depends: libc, libssp, librt, libpthread, liblua
+Source: feeds/luci/libs/luci-lib-nixio
+Section: luci
+Architecture: aarch64_armv8-a
+Installed-Size: 28825
+Description:  NIXIO POSIX library

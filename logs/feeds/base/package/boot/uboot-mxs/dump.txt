@@ -1,0 +1,2 @@
+Makefile:16: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/include/u-boot.mk: 没有那个文件或目录
+make[1]: *** No rule to make target '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/include/u-boot.mk'。 停止。

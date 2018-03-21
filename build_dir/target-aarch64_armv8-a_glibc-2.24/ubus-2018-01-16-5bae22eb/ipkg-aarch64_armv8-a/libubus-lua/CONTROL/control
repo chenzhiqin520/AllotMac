@@ -1,0 +1,10 @@
+Package: libubus-lua
+Version: 2018-01-16-5bae22eb-1
+Depends: libc, libssp, librt, libpthread, libubus, liblua
+Source: feeds/base/package/system/ubus
+License: LGPL-2.1
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 6894
+Description:  Lua binding for the OpenWrt RPC client

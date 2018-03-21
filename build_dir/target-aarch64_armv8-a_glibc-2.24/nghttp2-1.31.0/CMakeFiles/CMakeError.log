@@ -1,0 +1,174 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_da556/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_da556.dir/build.make CMakeFiles/cmTC_da556.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_da556.dir/CheckSymbolExists.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro    -o CMakeFiles/cmTC_da556.dir/CheckSymbolExists.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_da556
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/host/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da556.dir/link.txt --verbose=1
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc  -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro   -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/target-aarch64_armv8-a_glibc-2.24/usr/lib -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/target-aarch64_armv8-a_glibc-2.24/lib -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/usr/lib -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib -znow -zrelro  CMakeFiles/cmTC_da556.dir/CheckSymbolExists.c.o  -o cmTC_da556 -rdynamic 
+CMakeFiles/cmTC_da556.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text.startup+0x0): undefined reference to `pthread_create'
+CheckSymbolExists.c:(.text.startup+0x4): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_da556.dir/build.make:97: recipe for target 'cmTC_da556' failed
+make[5]: *** [cmTC_da556] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_da556/fast' failed
+make[4]: *** [cmTC_da556/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+File /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7ecf8/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7ecf8.dir/build.make CMakeFiles/cmTC_7ecf8.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ecf8.dir/CheckFunctionExists.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7ecf8.dir/CheckFunctionExists.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/host/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7ecf8
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/host/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ecf8.dir/link.txt --verbose=1
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc  -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DCHECK_FUNCTION_EXISTS=pthread_create  -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/target-aarch64_armv8-a_glibc-2.24/usr/lib -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/target-aarch64_armv8-a_glibc-2.24/lib -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/usr/lib -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib -znow -zrelro  CMakeFiles/cmTC_7ecf8.dir/CheckFunctionExists.c.o  -o cmTC_7ecf8 -rdynamic -lpthreads 
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/../lib/gcc/aarch64-openwrt-linux-gnu/5.4.0/../../../../aarch64-openwrt-linux-gnu/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_7ecf8.dir/build.make:97: recipe for target 'cmTC_7ecf8' failed
+make[5]: *** [cmTC_7ecf8] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7ecf8/fast' failed
+make[4]: *** [cmTC_7ecf8/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+
+Performing C SOURCE FILE Test C_FLAG__Wshorten_64_to_32 failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c6eaa/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c6eaa.dir/build.make CMakeFiles/cmTC_c6eaa.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c6eaa.dir/src.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DC_FLAG__Wshorten_64_to_32   -Wshorten-64-to-32 -o CMakeFiles/cmTC_c6eaa.dir/src.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/src.c
+aarch64-openwrt-linux-gnu-gcc: error: unrecognized command line option '-Wshorten-64-to-32'
+CMakeFiles/cmTC_c6eaa.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_c6eaa.dir/src.c.o' failed
+make[5]: *** [CMakeFiles/cmTC_c6eaa.dir/src.c.o] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_c6eaa/fast' failed
+make[4]: *** [cmTC_c6eaa/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test C_FLAG__Wextended_offsetof failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_61de9/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_61de9.dir/build.make CMakeFiles/cmTC_61de9.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_61de9.dir/src.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DC_FLAG__Wextended_offsetof   -Wextended-offsetof -o CMakeFiles/cmTC_61de9.dir/src.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/src.c
+aarch64-openwrt-linux-gnu-gcc: error: unrecognized command line option '-Wextended-offsetof'
+CMakeFiles/cmTC_61de9.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_61de9.dir/src.c.o' failed
+make[5]: *** [CMakeFiles/cmTC_61de9.dir/src.c.o] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_61de9/fast' failed
+make[4]: *** [cmTC_61de9/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test C_FLAG__Wlanguage_extension_token failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_daee0/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_daee0.dir/build.make CMakeFiles/cmTC_daee0.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_daee0.dir/src.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DC_FLAG__Wlanguage_extension_token   -Wlanguage-extension-token -o CMakeFiles/cmTC_daee0.dir/src.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/src.c
+aarch64-openwrt-linux-gnu-gcc: error: unrecognized command line option '-Wlanguage-extension-token'
+CMakeFiles/cmTC_daee0.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_daee0.dir/src.c.o' failed
+make[5]: *** [CMakeFiles/cmTC_daee0.dir/src.c.o] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_daee0/fast' failed
+make[4]: *** [cmTC_daee0/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test C_FLAG__Wmissing_variable_declarations failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b5d73/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b5d73.dir/build.make CMakeFiles/cmTC_b5d73.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b5d73.dir/src.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DC_FLAG__Wmissing_variable_declarations   -Wmissing-variable-declarations -o CMakeFiles/cmTC_b5d73.dir/src.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/src.c
+aarch64-openwrt-linux-gnu-gcc: error: unrecognized command line option '-Wmissing-variable-declarations'
+CMakeFiles/cmTC_b5d73.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_b5d73.dir/src.c.o' failed
+make[5]: *** [CMakeFiles/cmTC_b5d73.dir/src.c.o] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b5d73/fast' failed
+make[4]: *** [cmTC_b5d73/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test C_FLAG__Wunreachable_code_break failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_65644/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_65644.dir/build.make CMakeFiles/cmTC_65644.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_65644.dir/src.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DC_FLAG__Wunreachable_code_break   -Wunreachable-code-break -o CMakeFiles/cmTC_65644.dir/src.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/src.c
+aarch64-openwrt-linux-gnu-gcc: error: unrecognized command line option '-Wunreachable-code-break'
+CMakeFiles/cmTC_65644.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_65644.dir/src.c.o' failed
+make[5]: *** [CMakeFiles/cmTC_65644.dir/src.c.o] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_65644/fast' failed
+make[4]: *** [cmTC_65644/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test C_FLAG__Wheader_guard failed with the following output:
+Change Dir: /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7975b/fast"
+make[4]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7975b.dir/build.make CMakeFiles/cmTC_7975b.dir/build
+make[5]: Entering directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7975b.dir/src.c.o
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/bin/aarch64-openwrt-linux-gnu-gcc    -Os -pipe -fno-caller-saves -fno-caller-saves -fno-plt -fhonour-copts -Wno-error=unused-but-set-variable -Wno-error=unused-result -iremap /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0:nghttp2-1.31.0 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=1 -Wl,-z,now -Wl,-z,relro -DC_FLAG__Wheader_guard   -Wheader-guard -o CMakeFiles/cmTC_7975b.dir/src.c.o   -c /opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp/src.c
+aarch64-openwrt-linux-gnu-gcc: error: unrecognized command line option '-Wheader-guard'
+CMakeFiles/cmTC_7975b.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_7975b.dir/src.c.o' failed
+make[5]: *** [CMakeFiles/cmTC_7975b.dir/src.c.o] Error 1
+make[5]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7975b/fast' failed
+make[4]: *** [cmTC_7975b/fast] Error 2
+make[4]: Leaving directory '/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/nghttp2-1.31.0/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }

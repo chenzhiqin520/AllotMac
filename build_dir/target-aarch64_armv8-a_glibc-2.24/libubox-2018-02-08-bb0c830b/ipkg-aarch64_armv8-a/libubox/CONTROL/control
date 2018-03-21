@@ -1,0 +1,10 @@
+Package: libubox
+Version: 2018-02-08-bb0c830b-1
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/libubox
+License: ISC
+Section: libs
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_armv8-a
+Installed-Size: 18999
+Description:  Basic utility library

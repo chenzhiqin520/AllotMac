@@ -1,0 +1,19 @@
+Source-Makefile: package/AllotMac/Makefile
+Package: AllotMac
+Version: 2018-03-20-1.0
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libcurl +libpthread +libjson-c
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: base
+Category: Utilities
+Repository: base
+Title: LS1012A Allot Mac Server
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	Run in LS1012A development board,This is a Allot Mac client,Allot Mac to break-end server  
+
+@@
+
+

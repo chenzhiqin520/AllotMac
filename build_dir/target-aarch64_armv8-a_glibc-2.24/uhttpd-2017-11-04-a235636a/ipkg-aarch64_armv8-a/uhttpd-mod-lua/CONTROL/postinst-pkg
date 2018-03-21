@@ -1,0 +1,7 @@
+	
+	#!/bin/sh
+	if [ -f ${IPKG_INSTROOT}/www/index.html ]
+	then
+		sed -e 's:/cgi-bin::g' -i ${IPKG_INSTROOT}/www/index.html
+	fi
+	

@@ -1,0 +1,7 @@
+/* Generated automatically. */
+static const char configuration_arguments[] = "/home/work/lede/source-17.01.4-LS1012A/build_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/gcc-5.4.0/configure --with-bugurl=http://www.lede-project.org/bugs/ --with-pkgversion='LEDE GCC 5.4.0 r3560-79f57e422d' --prefix=/home/work/lede/source-17.01.4-LS1012A/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24 --build=i686-linux-gnu --host=i686-linux-gnu --target=aarch64-openwrt-linux-gnu --with-gnu-ld --enable-target-optspace --disable-libgomp --disable-libmudflap --disable-multilib --disable-libmpx --disable-nls --without-isl --without-cloog --with-host-libstdcxx=-lstdc++ --with-gmp=/home/work/lede/source-17.01.4-LS1012A/staging_dir/host --with-mpfr=/home/work/lede/source-17.01.4-LS1012A/staging_dir/host --with-mpc=/home/work/lede/source-17.01.4-LS1012A/staging_dir/host --disable-decimal-float --with-diagnostics-color=auto-if-env --enable-libssp --enable-__cxa_atexit --with-headers=/home/work/lede/source-17.01.4-LS1012A/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/include --disable-libsanitizer --enable-languages=c,c++ --enable-shared --enable-threads --with-slibdir=/home/work/lede/source-17.01.4-LS1012A/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_glibc-2.24/lib --enable-lto --with-libelf=/home/work/lede/source-17.01.4-LS1012A/staging_dir/host";
+static const char thread_model[] = "posix";
+
+static const struct {
+  const char *name, *value;
+} configure_default_options[] = { { NULL, NULL} };

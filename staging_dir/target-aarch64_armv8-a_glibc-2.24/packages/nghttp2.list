@@ -1,0 +1,13 @@
+./
+./host
+./usr
+./usr/lib
+./usr/lib/libnghttp2.so.14
+./usr/lib/libnghttp2.so
+./usr/lib/pkgconfig
+./usr/lib/pkgconfig/libnghttp2.pc
+./usr/lib/libnghttp2.so.14.16.0
+./usr/include
+./usr/include/nghttp2
+./usr/include/nghttp2/nghttp2.h
+./usr/include/nghttp2/nghttp2ver.h

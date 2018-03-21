@@ -1,0 +1,9 @@
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/install/local.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/install.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/list_install_components.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/rebuild_cache.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/uhttpd.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/uhttpd_lua.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/install/strip.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/uhttpd_ubus.dir
+/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/build_dir/target-aarch64_armv8-a_glibc-2.24/uhttpd-2017-11-04-a235636a/CMakeFiles/edit_cache.dir

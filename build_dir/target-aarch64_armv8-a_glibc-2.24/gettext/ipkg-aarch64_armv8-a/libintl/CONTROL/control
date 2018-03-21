@@ -1,0 +1,11 @@
+Package: libintl
+Version: 2
+Depends: libc, libssp, librt, libpthread
+Source: feeds/base/package/libs/gettext
+License: FSFULLR
+LicenseFiles: LICENSE
+Section: libs
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Architecture: aarch64_armv8-a
+Installed-Size: 166
+Description:  Stub header for the GNU Internationalization library

@@ -1,0 +1,1600 @@
+config DEFAULT_TARGET_layerscape_32b
+	bool
+	depends on TARGET_PER_DEVICE_ROOTFS
+	default y if TARGET_layerscape_32b
+	select DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+config DEFAULT_TARGET_layerscape_64b
+	bool
+	depends on TARGET_PER_DEVICE_ROOTFS
+	default y if TARGET_layerscape_64b
+	select DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+choice
+	prompt "Target System"
+	default TARGET_ar71xx
+	reset if !DEVEL
+	
+config TARGET_layerscape
+	bool "NXP Layerscape"
+	select HAS_SUBTARGETS
+	help
+	  Build firmware images for NXP Layerscape SoC devices.
+
+
+endchoice
+
+choice
+	prompt "Subtarget" if HAS_SUBTARGETS
+
+config TARGET_layerscape_64b
+	bool "layerscape 64b boards"
+	select LINUX_4_4
+	depends on TARGET_layerscape
+	select USES_DEVICETREE
+	select GPIO_SUPPORT
+	select NAND_SUPPORT
+	select PCI_SUPPORT
+	select PCI_SUPPORT
+	select PCIE_SUPPORT
+	select USES_SQUASHFS
+	select USB_SUPPORT
+	select VIRTIO_SUPPORT
+	select aarch64
+	select HAS_DEVICES
+	help
+	  Build firmware images for layerscape 64b boards SoC devices.
+
+
+config TARGET_layerscape_32b
+	bool "layerscape 32b boards"
+	select LINUX_4_4
+	depends on TARGET_layerscape
+	select arm_v7
+	select USES_DEVICETREE
+	select GPIO_SUPPORT
+	select NAND_SUPPORT
+	select PCI_SUPPORT
+	select PCI_SUPPORT
+	select PCIE_SUPPORT
+	select RTC_SUPPORT
+	select USES_SQUASHFS
+	select USB_SUPPORT
+	select arm
+	select HAS_DEVICES
+	help
+	  Build firmware images for layerscape 32b boards SoC devices.
+
+
+endchoice
+
+choice
+	prompt "Target Profile"
+	default TARGET_MULTI_PROFILE if BUILDBOT
+
+	default TARGET_layerscape_64b_Default if TARGET_layerscape_64b && !BUILDBOT
+	default TARGET_layerscape_32b_Default if TARGET_layerscape_32b && !BUILDBOT
+
+config TARGET_MULTI_PROFILE
+	bool "Multiple devices"
+	depends on HAS_DEVICES
+	help
+	Instead of only building a single image, or all images, this allows you
+	to select images to be built for multiple devices in one build.
+
+config TARGET_layerscape_64b_Default
+	bool "Default Profile"
+	depends on TARGET_layerscape_64b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Default package set compatible with most boards.
+
+config TARGET_layerscape_64b_DEVICE_ls1012ardb
+	bool "ls1012ardb-64b"
+	depends on TARGET_layerscape_64b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1012ardb-64b
+
+config TARGET_layerscape_64b_DEVICE_ls1043ardb
+	bool "ls1043ardb-64b"
+	depends on TARGET_layerscape_64b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1043ardb-64b
+
+config TARGET_layerscape_64b_DEVICE_ls1046ardb
+	bool "ls1046ardb-64b"
+	depends on TARGET_layerscape_64b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1046ardb-64b
+
+config TARGET_layerscape_64b_DEVICE_ls1088ardb
+	bool "ls1088ardb-64b"
+	depends on TARGET_layerscape_64b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mc-binary-ls1088ardb
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_rcw-layerscape-ls1088ardb
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb
+	select DEFAULT_uboot-layerscape-64b-ls1088ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1088ardb-64b
+
+config TARGET_layerscape_64b_DEVICE_ls2088ardb
+	bool "ls2088ardb-64b"
+	depends on TARGET_layerscape_64b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mc-binary-ls2088ardb
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_rcw-layerscape-ls2088ardb
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb
+	select DEFAULT_uboot-layerscape-64b-ls2088ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls2088ardb-64b
+
+config TARGET_layerscape_32b_Default
+	bool "Default Profile"
+	depends on TARGET_layerscape_32b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Default package set compatible with most boards.
+
+config TARGET_layerscape_32b_DEVICE_ls1012ardb
+	bool "ls1012ardb-32b"
+	depends on TARGET_layerscape_32b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1012ardb-32b
+
+config TARGET_layerscape_32b_DEVICE_ls1043ardb
+	bool "ls1043ardb-32b"
+	depends on TARGET_layerscape_32b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1043ardb-32b
+
+config TARGET_layerscape_32b_DEVICE_ls1046ardb
+	bool "ls1046ardb-32b"
+	depends on TARGET_layerscape_32b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1046ardb-32b
+
+config TARGET_layerscape_32b_DEVICE_ls1088ardb
+	bool "ls1088ardb-32b"
+	depends on TARGET_layerscape_32b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mc-binary-ls1088ardb
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_rcw-layerscape-ls1088ardb
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb
+	select DEFAULT_uboot-layerscape-32b-ls1088ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls1088ardb-32b
+
+config TARGET_layerscape_32b_DEVICE_ls2088ardb
+	bool "ls2088ardb-32b"
+	depends on TARGET_layerscape_32b
+	select DEFAULT_base-files
+	select DEFAULT_busybox
+	select DEFAULT_dropbear
+	select DEFAULT_fman-layerscape-ls1043ardb
+	select DEFAULT_fman-layerscape-ls1046ardb
+	select DEFAULT_fstools
+	select DEFAULT_kmod-ppfe
+	select DEFAULT_kmod-usb-dwc3
+	select DEFAULT_kmod-usb-storage
+	select DEFAULT_kmod-usb3
+	select DEFAULT_libc
+	select DEFAULT_libgcc
+	select DEFAULT_logd
+	select DEFAULT_mc-binary-ls2088ardb
+	select DEFAULT_mtd
+	select DEFAULT_netifd
+	select DEFAULT_opkg
+	select DEFAULT_ppfe-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1012ardb
+	select DEFAULT_rcw-layerscape-ls1043ardb
+	select DEFAULT_rcw-layerscape-ls1046ardb
+	select DEFAULT_rcw-layerscape-ls2088ardb
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb
+	select DEFAULT_uboot-layerscape-32b-ls2088ardb
+	select DEFAULT_uci
+	select DEFAULT_uclient-fetch
+	help
+	  Build firmware images for ls2088ardb-32b
+
+endchoice
+
+menu "Target Devices"
+	depends on TARGET_MULTI_PROFILE
+
+	config TARGET_ALL_PROFILES
+		bool "Enable all profiles by default"
+		default BUILDBOT
+
+	config TARGET_PER_DEVICE_ROOTFS
+		bool "Use a per-device root filesystem that adds profile packages"
+		default BUILDBOT
+		help
+		When disabled, all device packages from all selected devices
+		will be included in all images by default. (Marked as <*>) You will
+		still be able to manually deselect any/all packages.
+		When enabled, each device builds it's own image, including only the
+		profile packages for that device.  (Marked as {M}) You will be able
+		to change a package to included in all images by marking as {*}, but
+		will not be able to disable a profile package completely.
+		
+		To get the most use of this setting, you must set in a .config stub
+		before calling "make defconfig".  Selecting TARGET_MULTI_PROFILE and
+		then manually selecting (via menuconfig for instance) this option
+		will have pre-defaulted all profile packages to included, making this
+		option appear to have had no effect.
+
+menuconfig TARGET_DEVICE_layerscape_64b_DEVICE_ls1012ardb
+	bool "ls1012ardb-64b"
+	depends on TARGET_layerscape_64b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_64b_DEVICE_ls1012ardb
+		string "ls1012ardb-64b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_64b_DEVICE_ls1012ardb
+
+menuconfig TARGET_DEVICE_layerscape_64b_DEVICE_ls1043ardb
+	bool "ls1043ardb-64b"
+	depends on TARGET_layerscape_64b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_64b_DEVICE_ls1043ardb
+		string "ls1043ardb-64b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_64b_DEVICE_ls1043ardb
+
+menuconfig TARGET_DEVICE_layerscape_64b_DEVICE_ls1046ardb
+	bool "ls1046ardb-64b"
+	depends on TARGET_layerscape_64b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_64b_DEVICE_ls1046ardb
+		string "ls1046ardb-64b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_64b_DEVICE_ls1046ardb
+
+menuconfig TARGET_DEVICE_layerscape_64b_DEVICE_ls1088ardb
+	bool "ls1088ardb-64b"
+	depends on TARGET_layerscape_64b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mc-binary-ls1088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mc-binary-ls1088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_64b_DEVICE_ls1088ardb
+		string "ls1088ardb-64b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_64b_DEVICE_ls1088ardb
+
+menuconfig TARGET_DEVICE_layerscape_64b_DEVICE_ls2088ardb
+	bool "ls2088ardb-64b"
+	depends on TARGET_layerscape_64b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mc-binary-ls2088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mc-binary-ls2088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls2088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls2088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-64b-ls2088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-64b-ls2088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_64b_DEVICE_ls2088ardb
+		string "ls2088ardb-64b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_64b_DEVICE_ls2088ardb
+
+menuconfig TARGET_DEVICE_layerscape_32b_DEVICE_ls1012ardb
+	bool "ls1012ardb-32b"
+	depends on TARGET_layerscape_32b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_32b_DEVICE_ls1012ardb
+		string "ls1012ardb-32b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_32b_DEVICE_ls1012ardb
+
+menuconfig TARGET_DEVICE_layerscape_32b_DEVICE_ls1043ardb
+	bool "ls1043ardb-32b"
+	depends on TARGET_layerscape_32b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_32b_DEVICE_ls1043ardb
+		string "ls1043ardb-32b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_32b_DEVICE_ls1043ardb
+
+menuconfig TARGET_DEVICE_layerscape_32b_DEVICE_ls1046ardb
+	bool "ls1046ardb-32b"
+	depends on TARGET_layerscape_32b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_32b_DEVICE_ls1046ardb
+		string "ls1046ardb-32b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_32b_DEVICE_ls1046ardb
+
+menuconfig TARGET_DEVICE_layerscape_32b_DEVICE_ls1088ardb
+	bool "ls1088ardb-32b"
+	depends on TARGET_layerscape_32b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mc-binary-ls1088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mc-binary-ls1088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_32b_DEVICE_ls1088ardb
+		string "ls1088ardb-32b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_32b_DEVICE_ls1088ardb
+
+menuconfig TARGET_DEVICE_layerscape_32b_DEVICE_ls2088ardb
+	bool "ls2088ardb-32b"
+	depends on TARGET_layerscape_32b
+	default y if TARGET_ALL_PROFILES
+	select DEFAULT_base-files if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_base-files if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_busybox if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_busybox if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_dropbear if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_dropbear if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fman-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fman-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_fstools if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_fstools if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-ppfe if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-ppfe if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-dwc3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-dwc3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb-storage if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb-storage if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_kmod-usb3 if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_kmod-usb3 if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_libgcc if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_libgcc if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_logd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_logd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mc-binary-ls2088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mc-binary-ls2088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_mtd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_mtd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_netifd if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_netifd if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_opkg if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_opkg if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_ppfe-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_ppfe-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_rcw-layerscape-ls2088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_rcw-layerscape-ls2088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1012ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1012ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1043ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1043ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls1046ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls1046ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uboot-layerscape-32b-ls2088ardb if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uboot-layerscape-32b-ls2088ardb if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uci if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uci if TARGET_PER_DEVICE_ROOTFS
+	select DEFAULT_uclient-fetch if !TARGET_PER_DEVICE_ROOTFS
+	select MODULE_DEFAULT_uclient-fetch if TARGET_PER_DEVICE_ROOTFS
+
+
+	config TARGET_DEVICE_PACKAGES_layerscape_32b_DEVICE_ls2088ardb
+		string "ls2088ardb-32b additional packages"
+		default ""
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on TARGET_DEVICE_layerscape_32b_DEVICE_ls2088ardb
+
+
+endmenu
+
+config HAS_SUBTARGETS
+	bool
+
+config HAS_DEVICES
+	bool
+
+config TARGET_BOARD
+	string
+
+		default "layerscape" if TARGET_layerscape
+config TARGET_SUBTARGET
+	string
+	default "generic" if !HAS_SUBTARGETS
+
+		default "64b" if TARGET_layerscape_64b
+		default "32b" if TARGET_layerscape_32b
+config TARGET_PROFILE
+	string
+	default "Default" if TARGET_layerscape_64b_Default
+	default "DEVICE_ls1012ardb" if TARGET_layerscape_64b_DEVICE_ls1012ardb
+	default "DEVICE_ls1043ardb" if TARGET_layerscape_64b_DEVICE_ls1043ardb
+	default "DEVICE_ls1046ardb" if TARGET_layerscape_64b_DEVICE_ls1046ardb
+	default "DEVICE_ls1088ardb" if TARGET_layerscape_64b_DEVICE_ls1088ardb
+	default "DEVICE_ls2088ardb" if TARGET_layerscape_64b_DEVICE_ls2088ardb
+	default "Default" if TARGET_layerscape_32b_Default
+	default "DEVICE_ls1012ardb" if TARGET_layerscape_32b_DEVICE_ls1012ardb
+	default "DEVICE_ls1043ardb" if TARGET_layerscape_32b_DEVICE_ls1043ardb
+	default "DEVICE_ls1046ardb" if TARGET_layerscape_32b_DEVICE_ls1046ardb
+	default "DEVICE_ls1088ardb" if TARGET_layerscape_32b_DEVICE_ls1088ardb
+	default "DEVICE_ls2088ardb" if TARGET_layerscape_32b_DEVICE_ls2088ardb
+
+config TARGET_ARCH_PACKAGES
+	string
+	
+		default "aarch64_armv8-a" if TARGET_layerscape_64b
+		default "arm_cortex-a9" if TARGET_layerscape_32b
+
+config DEFAULT_TARGET_OPTIMIZATION
+	string
+	default "-Os -pipe -fno-caller-saves" if TARGET_layerscape_64b
+	default "-Os -pipe -mcpu=cortex-a9" if TARGET_layerscape_32b
+	default "-Os -pipe -funit-at-a-time"
+
+config CPU_TYPE
+	string
+	default "armv8-a" if TARGET_layerscape_64b
+	default "cortex-a9" if TARGET_layerscape_32b
+	default ""
+
+config LINUX_4_4
+	bool
+
+	config DEFAULT_base-files
+		bool
+
+	config MODULE_DEFAULT_base-files
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_base-files
+		select PACKAGE_base-files
+
+	config DEFAULT_busybox
+		bool
+
+	config MODULE_DEFAULT_busybox
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_busybox
+		select PACKAGE_busybox
+
+	config DEFAULT_dropbear
+		bool
+
+	config MODULE_DEFAULT_dropbear
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_dropbear
+		select PACKAGE_dropbear
+
+	config DEFAULT_fman-layerscape-ls1043ardb
+		bool
+
+	config MODULE_DEFAULT_fman-layerscape-ls1043ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_fman-layerscape-ls1043ardb
+		select PACKAGE_fman-layerscape-ls1043ardb
+
+	config DEFAULT_fman-layerscape-ls1046ardb
+		bool
+
+	config MODULE_DEFAULT_fman-layerscape-ls1046ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_fman-layerscape-ls1046ardb
+		select PACKAGE_fman-layerscape-ls1046ardb
+
+	config DEFAULT_fstools
+		bool
+
+	config MODULE_DEFAULT_fstools
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_fstools
+		select PACKAGE_fstools
+
+	config DEFAULT_kmod-ppfe
+		bool
+
+	config MODULE_DEFAULT_kmod-ppfe
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_kmod-ppfe
+		select PACKAGE_kmod-ppfe
+
+	config DEFAULT_kmod-usb-dwc3
+		bool
+
+	config MODULE_DEFAULT_kmod-usb-dwc3
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_kmod-usb-dwc3
+		select PACKAGE_kmod-usb-dwc3
+
+	config DEFAULT_kmod-usb-storage
+		bool
+
+	config MODULE_DEFAULT_kmod-usb-storage
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_kmod-usb-storage
+		select PACKAGE_kmod-usb-storage
+
+	config DEFAULT_kmod-usb3
+		bool
+
+	config MODULE_DEFAULT_kmod-usb3
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_kmod-usb3
+		select PACKAGE_kmod-usb3
+
+	config DEFAULT_libc
+		bool
+
+	config MODULE_DEFAULT_libc
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_libc
+		select PACKAGE_libc
+
+	config DEFAULT_libgcc
+		bool
+
+	config MODULE_DEFAULT_libgcc
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_libgcc
+		select PACKAGE_libgcc
+
+	config DEFAULT_logd
+		bool
+
+	config MODULE_DEFAULT_logd
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_logd
+		select PACKAGE_logd
+
+	config DEFAULT_mc-binary-ls1088ardb
+		bool
+
+	config MODULE_DEFAULT_mc-binary-ls1088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_mc-binary-ls1088ardb
+		select PACKAGE_mc-binary-ls1088ardb
+
+	config DEFAULT_mc-binary-ls2088ardb
+		bool
+
+	config MODULE_DEFAULT_mc-binary-ls2088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_mc-binary-ls2088ardb
+		select PACKAGE_mc-binary-ls2088ardb
+
+	config DEFAULT_mtd
+		bool
+
+	config MODULE_DEFAULT_mtd
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_mtd
+		select PACKAGE_mtd
+
+	config DEFAULT_netifd
+		bool
+
+	config MODULE_DEFAULT_netifd
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_netifd
+		select PACKAGE_netifd
+
+	config DEFAULT_opkg
+		bool
+
+	config MODULE_DEFAULT_opkg
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_opkg
+		select PACKAGE_opkg
+
+	config DEFAULT_ppfe-ls1012ardb
+		bool
+
+	config MODULE_DEFAULT_ppfe-ls1012ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_ppfe-ls1012ardb
+		select PACKAGE_ppfe-ls1012ardb
+
+	config DEFAULT_rcw-layerscape-ls1012ardb
+		bool
+
+	config MODULE_DEFAULT_rcw-layerscape-ls1012ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_rcw-layerscape-ls1012ardb
+		select PACKAGE_rcw-layerscape-ls1012ardb
+
+	config DEFAULT_rcw-layerscape-ls1043ardb
+		bool
+
+	config MODULE_DEFAULT_rcw-layerscape-ls1043ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_rcw-layerscape-ls1043ardb
+		select PACKAGE_rcw-layerscape-ls1043ardb
+
+	config DEFAULT_rcw-layerscape-ls1046ardb
+		bool
+
+	config MODULE_DEFAULT_rcw-layerscape-ls1046ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_rcw-layerscape-ls1046ardb
+		select PACKAGE_rcw-layerscape-ls1046ardb
+
+	config DEFAULT_rcw-layerscape-ls1088ardb
+		bool
+
+	config MODULE_DEFAULT_rcw-layerscape-ls1088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_rcw-layerscape-ls1088ardb
+		select PACKAGE_rcw-layerscape-ls1088ardb
+
+	config DEFAULT_rcw-layerscape-ls2088ardb
+		bool
+
+	config MODULE_DEFAULT_rcw-layerscape-ls2088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_rcw-layerscape-ls2088ardb
+		select PACKAGE_rcw-layerscape-ls2088ardb
+
+	config DEFAULT_uboot-layerscape-32b-ls1012ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-32b-ls1012ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-32b-ls1012ardb
+		select PACKAGE_uboot-layerscape-32b-ls1012ardb
+
+	config DEFAULT_uboot-layerscape-32b-ls1043ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-32b-ls1043ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-32b-ls1043ardb
+		select PACKAGE_uboot-layerscape-32b-ls1043ardb
+
+	config DEFAULT_uboot-layerscape-32b-ls1046ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-32b-ls1046ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-32b-ls1046ardb
+		select PACKAGE_uboot-layerscape-32b-ls1046ardb
+
+	config DEFAULT_uboot-layerscape-32b-ls1088ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-32b-ls1088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-32b-ls1088ardb
+		select PACKAGE_uboot-layerscape-32b-ls1088ardb
+
+	config DEFAULT_uboot-layerscape-32b-ls2088ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-32b-ls2088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-32b-ls2088ardb
+		select PACKAGE_uboot-layerscape-32b-ls2088ardb
+
+	config DEFAULT_uboot-layerscape-64b-ls1012ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-64b-ls1012ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-64b-ls1012ardb
+		select PACKAGE_uboot-layerscape-64b-ls1012ardb
+
+	config DEFAULT_uboot-layerscape-64b-ls1043ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-64b-ls1043ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-64b-ls1043ardb
+		select PACKAGE_uboot-layerscape-64b-ls1043ardb
+
+	config DEFAULT_uboot-layerscape-64b-ls1046ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-64b-ls1046ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-64b-ls1046ardb
+		select PACKAGE_uboot-layerscape-64b-ls1046ardb
+
+	config DEFAULT_uboot-layerscape-64b-ls1088ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-64b-ls1088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-64b-ls1088ardb
+		select PACKAGE_uboot-layerscape-64b-ls1088ardb
+
+	config DEFAULT_uboot-layerscape-64b-ls2088ardb
+		bool
+
+	config MODULE_DEFAULT_uboot-layerscape-64b-ls2088ardb
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uboot-layerscape-64b-ls2088ardb
+		select PACKAGE_uboot-layerscape-64b-ls2088ardb
+
+	config DEFAULT_uci
+		bool
+
+	config MODULE_DEFAULT_uci
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uci
+		select PACKAGE_uci
+
+	config DEFAULT_uclient-fetch
+		bool
+
+	config MODULE_DEFAULT_uclient-fetch
+		tristate
+		depends on TARGET_PER_DEVICE_ROOTFS
+		depends on m
+		default m if DEFAULT_uclient-fetch
+		select PACKAGE_uclient-fetch
+

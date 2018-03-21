@@ -1,0 +1,11 @@
+Package: libnftnl
+Version: 1.0.9-2
+Depends: libc, libssp, librt, libpthread, libmnl
+Source: feeds/base/package/libs/libnftnl
+License: GPL-2.0+
+Section: libs
+Maintainer: Steven Barth <steven@midlink.org>
+Architecture: aarch64_armv8-a
+Installed-Size: 46474
+Description:  libnftnl is a userspace library providing a low-level netlink
+ programming interface (API) to the in-kernel nf_tables subsystem.

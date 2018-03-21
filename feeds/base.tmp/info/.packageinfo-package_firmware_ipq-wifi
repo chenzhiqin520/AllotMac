@@ -1,0 +1,90 @@
+Source-Makefile: feeds/base/package/firmware/ipq-wifi/Makefile
+Package: ipq-wifi-asus_rt-ac58u
+Submenu: ath10k IPQ4019 Boarddata
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq40xx +ath10k-firmware-qca4019
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: firmware
+Category: Firmware
+Repository: base
+Title: Board for ASUS RT-AC58U
+Maintainer: 
+Source: 
+Type: ipkg
+Description: This device custom package board-2.bin overwrites the board-2.bin
+file which is supplied by the ath10k-firmware-qca4019 package.
+
+This is package is only necessary for the ASUS RT-AC58U.
+Don't install it for any other device!
+
+@@
+
+Package: ipq-wifi-avm_fritzbox-4040
+Submenu: ath10k IPQ4019 Boarddata
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq40xx +ath10k-firmware-qca4019
+Conflicts: ipq-wifi-asus_rt-ac58u
+Menu-Depends: 
+Provides: 
+Section: firmware
+Category: Firmware
+Repository: base
+Title: Board for AVM FRITZ!Box 4040
+Maintainer: 
+Source: 
+Type: ipkg
+Description: This device custom package board-2.bin overwrites the board-2.bin
+file which is supplied by the ath10k-firmware-qca4019 package.
+
+This is package is only necessary for the AVM FRITZ!Box 4040.
+Don't install it for any other device!
+
+@@
+
+Package: ipq-wifi-glinet_gl-b1300
+Submenu: ath10k IPQ4019 Boarddata
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq40xx +ath10k-firmware-qca4019
+Conflicts: ipq-wifi-asus_rt-ac58u ipq-wifi-avm_fritzbox-4040
+Menu-Depends: 
+Provides: 
+Section: firmware
+Category: Firmware
+Repository: base
+Title: Board for GL.iNet GL-B1300
+Maintainer: 
+Source: 
+Type: ipkg
+Description: This device custom package board-2.bin overwrites the board-2.bin
+file which is supplied by the ath10k-firmware-qca4019 package.
+
+This is package is only necessary for the GL.iNet GL-B1300.
+Don't install it for any other device!
+
+@@
+
+Package: ipq-wifi-meraki_mr33
+Submenu: ath10k IPQ4019 Boarddata
+Version: 1
+Depends: +libc +SSP_SUPPORT:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq40xx +ath10k-firmware-qca4019
+Conflicts: ipq-wifi-asus_rt-ac58u ipq-wifi-avm_fritzbox-4040 ipq-wifi-glinet_gl-b1300
+Menu-Depends: 
+Provides: 
+Section: firmware
+Category: Firmware
+Repository: base
+Title: Board for Cisco Meraki MR33
+Maintainer: 
+Source: 
+Type: ipkg
+Description: This device custom package board-2.bin overwrites the board-2.bin
+file which is supplied by the ath10k-firmware-qca4019 package.
+
+This is package is only necessary for the Cisco Meraki MR33.
+Don't install it for any other device!
+
+@@
+
+

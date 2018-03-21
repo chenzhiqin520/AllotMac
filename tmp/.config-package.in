@@ -1,0 +1,2637 @@
+menuconfig IMAGEOPT
+	bool "Image configuration"
+	default n
+source "package/*/image-config.in"
+menu "Base system"
+
+	config PACKAGE_firewall
+		tristate "firewall.............................................. OpenWrt C Firewall"
+		default y if DEFAULT_firewall
+		default m if ALL
+		select PACKAGE_libubox
+		select PACKAGE_kmod-nf-conntrack6 if IPV6
+		select PACKAGE_kmod-ipt-nat
+		select PACKAGE_libxtables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libip6tc if IPV6
+		select PACKAGE_libubus
+		select PACKAGE_libuci
+		select PACKAGE_libip4tc
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_kmod-ipt-conntrack
+		select PACKAGE_kmod-ipt-core
+		help
+		 This package provides a config-compatible C implementation of the UCI firewall.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libatomic
+		tristate "libatomic......................................... Atomic support library"
+		default y if DEFAULT_libatomic
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_libgcc
+		help
+		 Atomic support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libatomic
+	
+		config LIBATOMIC_ROOT_DIR
+			string
+			prompt "libatomic shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libatomic
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBATOMIC_FILE_SPEC
+			string
+			prompt "libatomic shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libatomic
+			default "./lib/libatomic.so.*"
+	
+		endmenu
+
+	config PACKAGE_libc
+		tristate "libc........................................................... C library"
+		default y if DEFAULT_libc
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_libgcc
+		help
+		 C library
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+	
+		config LIBC_ROOT_DIR
+			string
+			prompt "libc shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBC_FILE_SPEC
+			string
+			prompt "libc shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libc
+			default "./lib/ld{-*.so,-linux*.so.*} ./lib/lib{anl,c,cidn,crypt,dl,m,nsl,nss_dns,nss_files,resolv,util}{-*.so,.so.*}"
+	
+		endmenu
+
+	config PACKAGE_libgcc
+		tristate "libgcc............................................... GCC support library"
+		default y if DEFAULT_libgcc
+		default m if ALL||ALL_NONSHARED
+		help
+		 GCC support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgcc
+	
+		config LIBGCC_ROOT_DIR
+			string
+			prompt "libgcc shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgcc
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBGCC_FILE_SPEC
+			string
+			prompt "libgcc shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgcc
+			default "./lib/libgcc_s.so.*"
+	
+		endmenu
+
+	config PACKAGE_libgfortran
+		tristate "libgfortran..................................... GFortran support library"
+		default y if DEFAULT_libgfortran
+		default m if ALL||ALL_NONSHARED
+		depends on INSTALL_GFORTRAN
+		help
+		 GFortran support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgfortran
+	
+		config LIBGFORTRAN_ROOT_DIR
+			string
+			prompt "libgfortran shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgfortran
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBGFORTRAN_FILE_SPEC
+			string
+			prompt "libgfortran shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libgfortran
+			default "./usr/lib/libgfortran.so.*"
+	
+		endmenu
+
+	config PACKAGE_libpthread
+		tristate "libpthread.......................................... POSIX thread library"
+		default y if DEFAULT_libpthread
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_libgcc
+		help
+		 POSIX thread library
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_libpthread
+	
+		config LIBPTHREAD_ROOT_DIR
+			string
+			prompt "libpthread shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libpthread
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBPTHREAD_FILE_SPEC
+			string
+			prompt "libpthread shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libpthread
+			default "./lib/libpthread{-*.so,.so.*}"
+	
+		endmenu
+
+	config PACKAGE_librt
+		tristate "librt................................ POSIX.1b RealTime extension library"
+		default y if DEFAULT_librt
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_libpthread
+		help
+		 POSIX.1b RealTime extension library
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_librt
+	
+		config LIBRT_ROOT_DIR
+			string
+			prompt "librt shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_librt
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBRT_FILE_SPEC
+			string
+			prompt "librt shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_librt
+			default "./lib/librt{-*.so,.so.*}"
+	
+		endmenu
+
+	config PACKAGE_libssp
+		tristate "libssp............................................... GCC support library"
+		default y if DEFAULT_libssp
+		default m if ALL||ALL_NONSHARED
+		depends on SSP_SUPPORT
+		help
+		 GCC support library
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+	
+		config LIBSSP_ROOT_DIR
+			string
+			prompt "libssp shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBSSP_FILE_SPEC
+			string
+			prompt "libssp shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libssp
+			default "./lib/libssp.so.*"
+	
+		endmenu
+
+	config PACKAGE_libstdcpp
+		tristate "libstdcpp.................................... GNU Standard C++ Library v3"
+		default y if DEFAULT_libstdcpp
+		default m if ALL||ALL_NONSHARED
+		help
+		 GNU Standard C++ Library v3
+		 http://gcc.gnu.org/
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+		depends on EXTERNAL_TOOLCHAIN && PACKAGE_libstdcpp
+	
+		config LIBSTDCPP_ROOT_DIR
+			string
+			prompt "libstdcpp shared library base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libstdcpp
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LIBSTDCPP_FILE_SPEC
+			string
+			prompt "libstdc++ shared library files (use wildcards)"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_libstdcpp
+			default "./lib/libstdc++.so.*"
+	
+		endmenu
+
+	config PACKAGE_libthread-db
+		tristate "libthread-db...................... POSIX thread library debugging support"
+		default y if DEFAULT_libthread-db
+		default m if ALL||ALL_NONSHARED
+		depends on !USE_MUSL
+		help
+		 POSIX thread library debugging support
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_rpcd
+		tristate "rpcd..................................... OpenWrt ubus RPC backend server"
+		default y if DEFAULT_rpcd
+		default m if ALL
+		select PACKAGE_libubox
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libblobmsg-json
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libubus
+		select PACKAGE_libuci
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 This package provides the UBUS RPC backend server to expose various
+		  functionality to frontend programs via JSON-RPC.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_rpcd-mod-file
+		tristate "rpcd-mod-file.............. OpenWrt ubus RPC backend server (file plugin)"
+		default y if DEFAULT_rpcd-mod-file
+		default m if ALL
+		depends on PACKAGE_rpcd
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libubus
+		select PACKAGE_libubox
+		help
+		 Provides ubus calls for file and directory operations.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_rpcd-mod-iwinfo
+		tristate "rpcd-mod-iwinfo.......... OpenWrt ubus RPC backend server (iwinfo plugin)"
+		default y if DEFAULT_rpcd-mod-iwinfo
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libiwinfo
+		select PACKAGE_libubox
+		depends on PACKAGE_rpcd
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libubus
+		help
+		 Provides ubus calls for accessing iwinfo data.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_rpcd-mod-rpcsys
+		tristate "rpcd-mod-rpcsys.......... OpenWrt ubus RPC backend server (rpcsys plugin)"
+		default y if DEFAULT_rpcd-mod-rpcsys
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libubus
+		select PACKAGE_libubox
+		depends on PACKAGE_rpcd
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Provides ubus calls for sysupgrade and password changing.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_ubus
+		tristate "ubus.......................................... OpenWrt RPC client utility"
+		default y if DEFAULT_ubus
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libblobmsg-json
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_ubusd
+		select PACKAGE_libubus
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 OpenWrt RPC client utility
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_ubusd
+		tristate "ubusd................................................. OpenWrt RPC daemon"
+		default y if DEFAULT_ubusd
+		default m if ALL
+		select PACKAGE_libubox
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libblobmsg-json
+		help
+		 OpenWrt RPC daemon
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_uci
+		tristate "uci................ Utility for the Unified Configuration Interface (UCI)"
+		default y if DEFAULT_uci
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libuci
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Utility for the Unified Configuration Interface (UCI)
+		 Felix Fietkau <nbd@nbd.name>
+
+endmenu
+
+menu "Development"
+
+menu "Libraries"
+	config PACKAGE_zlib-dev
+		tristate "zlib-dev.......................... Development files for the zlib library"
+		default y if DEFAULT_zlib-dev
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		depends on PACKAGE_zlib
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 zlib is a lossless data-compression library.
+		  This package includes the development support files.
+		 
+
+endmenu
+endmenu
+
+menu "Kernel modules"
+
+menu "Block Devices"
+endmenu
+menu "CAN Support"
+endmenu
+menu "Cryptographic API modules"
+endmenu
+menu "Filesystems"
+endmenu
+menu "FireWire support"
+endmenu
+menu "Hardware Monitoring Support"
+endmenu
+menu "I2C support"
+endmenu
+menu "Input modules"
+endmenu
+menu "LED modules"
+endmenu
+menu "Libraries"
+endmenu
+menu "Native Language Support"
+endmenu
+menu "Netfilter Extensions"
+endmenu
+menu "Network Devices"
+endmenu
+menu "Network Support"
+endmenu
+menu "Other modules"
+endmenu
+menu "PCMCIA support"
+endmenu
+menu "SPI Support"
+endmenu
+menu "Sound Support"
+endmenu
+menu "USB Support"
+endmenu
+menu "Video Support"
+endmenu
+menu "Virtualization"
+endmenu
+menu "W1 support"
+endmenu
+menu "WPAN 802.15.4 Support"
+endmenu
+menu "Wireless Drivers"
+endmenu
+endmenu
+
+menu "Languages"
+
+menu "Lua"
+	config PACKAGE_libiwinfo-lua
+		tristate "libiwinfo-lua...................................... libiwinfo Lua binding"
+		default y if DEFAULT_libiwinfo-lua
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_libc
+		select PACKAGE_libiwinfo
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 This is the Lua binding for the iwinfo library. It provides access to all enabled
+		   backends.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_lua
+		tristate "lua............................... Lua programming language (interpreter)"
+		default y if DEFAULT_lua
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Lua is a powerful light-weight programming language designed for extending 
+		  applications. Lua is also frequently used as a general-purpose, stand-alone 
+		  language. Lua is free software.
+		  This package contains the Lua language interpreter.
+		 http://www.lua.org/
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_lua-examples
+		tristate "lua-examples......................... Lua programming language (examples)"
+		default y if DEFAULT_lua-examples
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_lua
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Lua is a powerful light-weight programming language designed for extending 
+		  applications. Lua is also frequently used as a general-purpose, stand-alone 
+		  language. Lua is free software.
+		  This package contains Lua language examples.
+		 http://www.lua.org/
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_luac
+		tristate "luac................................. Lua programming language (compiler)"
+		default y if DEFAULT_luac
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Lua is a powerful light-weight programming language designed for extending 
+		  applications. Lua is also frequently used as a general-purpose, stand-alone 
+		  language. Lua is free software.
+		  This package contains the Lua language compiler.
+		 http://www.lua.org/
+		 Jo-Philipp Wich <jo@mein.io>
+
+endmenu
+endmenu
+
+menu "Libraries"
+
+menu "Firewall"
+	config PACKAGE_libip4tc
+		tristate "libip4tc.......................... IPv4 firewall - shared libiptc library"
+		default y if DEFAULT_libip4tc
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libxtables
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 IPv4 firewall - shared libiptc library
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_libip6tc
+		tristate "libip6tc.......................... IPv6 firewall - shared libiptc library"
+		default y if DEFAULT_libip6tc
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libxtables
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 IPv6 firewall - shared libiptc library
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_libiptc
+		tristate "libiptc. IPv4/IPv6 firewall - shared libiptc library (compatibility stub)"
+		default y if DEFAULT_libiptc
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libxtables
+		select PACKAGE_libip4tc
+		select PACKAGE_libip6tc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 IPv4/IPv6 firewall - shared libiptc library (compatibility stub)
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_libxtables
+		tristate "libxtables................... IPv4/IPv6 firewall - shared xtables library"
+		default y if DEFAULT_libxtables
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libnetfilter-conntrack if IPTABLES_CONNLABEL
+		select PACKAGE_libnftnl if IPTABLES_NFTABLES
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 IPv4/IPv6 firewall - shared xtables library
+		 http://netfilter.org/
+		 
+
+endmenu
+menu "SSL"
+	config PACKAGE_libmbedtls
+		tristate "libmbedtls........................................ Embedded SSL (library)"
+		default y if DEFAULT_libmbedtls
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 The aim of the mbedtls project is to provide a quality, open-source
+		 cryptographic library written in C and targeted at embedded systems.
+		 This package contains the mbedtls library.
+		 https://tls.mbed.org
+		 
+
+	menuconfig PACKAGE_libopenssl
+		tristate "libopenssl........................... Open source SSL toolkit (libraries)"
+		default y if DEFAULT_libopenssl
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_zlib if OPENSSL_WITH_COMPRESSION
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 The OpenSSL Project is a collaborative effort to develop a robust,
+		 commercial-grade, full-featured, and Open Source toolkit implementing the Secure
+		 Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well
+		 as a full-strength general purpose cryptography library.
+		 This package contains the OpenSSL shared libraries, needed by other programs.
+		 http://www.openssl.org/
+		 
+
+
+	source "feeds/base/package/libs/openssl/Config.in"
+
+	menuconfig PACKAGE_libwolfssl
+		tristate "libwolfssl............................................... wolfSSL library"
+		default y if DEFAULT_libwolfssl
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 wolfSSL (formerly CyaSSL) is an SSL library optimized for small
+		 footprint, both on disk and for memory use.
+		 http://www.wolfssl.com/
+		 Alexandru Ardelean <ardeleanalex@gmail.com>
+
+
+		source "feeds/base/package/libs/wolfssl/Config.in"
+
+endmenu
+	config PACKAGE_libblobmsg-json
+		tristate "libblobmsg-json...................... blobmsg <-> json conversion library"
+		default y if DEFAULT_libblobmsg-json
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libjson-c
+		select PACKAGE_libubox
+		help
+		 blobmsg <-> json conversion library
+		 Felix Fietkau <nbd@nbd.name>
+
+	menuconfig PACKAGE_libcurl
+		tristate "libcurl............................... A client-side URL transfer library"
+		default y if DEFAULT_libcurl
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libnghttp2 if LIBCURL_NGHTTP2
+		select PACKAGE_libopenldap if LIBCURL_LDAP
+		select PACKAGE_libpthread if LIBCURL_THREADED_RESOLVER
+		select PACKAGE_libwolfssl if LIBCURL_WOLFSSL
+		select PACKAGE_libidn if LIBCURL_LIBIDN
+		select PACKAGE_libssh2 if LIBCURL_SSH2
+		select PACKAGE_libopenssl if LIBCURL_OPENSSL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libmbedtls if LIBCURL_MBEDTLS
+		select PACKAGE_zlib if LIBCURL_ZLIB
+		select PACKAGE_libgnutls if LIBCURL_GNUTLS
+		help
+		 A client-side URL transfer library
+		 http://curl.haxx.se/
+		 Imre Kaloz <kaloz@openwrt.org>
+
+
+	  source "feeds/base/package/network/utils/curl/Config.in"
+
+	config PACKAGE_libiconv
+		tristate "libiconv"
+		default y if DEFAULT_libiconv
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Tiny drop-in replacement for the GNU Character set conversion library
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libintl
+		tristate "libintl............. Stub header for the GNU Internationalization library"
+		default y if DEFAULT_libintl
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Stub header for the GNU Internationalization library
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libiwinfo
+		tristate "libiwinfo.............. Generalized Wireless Information Library (iwinfo)"
+		default y if DEFAULT_libiwinfo
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libnl-tiny if PACKAGE_kmod-cfg80211
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libuci
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Wireless information library with consistent interface for proprietary Broadcom,
+		   nl80211 and wext driver interfaces.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libjson-c
+		tristate "libjson-c..................................... javascript object notation"
+		default y if DEFAULT_libjson-c
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 This package contains a library for javascript object notation backends.
+		 http://oss.metaparadigm.com/json-c/
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_liblua
+		tristate "liblua.............................. Lua programming language (libraries)"
+		default y if DEFAULT_liblua
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Lua is a powerful light-weight programming language designed for extending 
+		  applications. Lua is also frequently used as a general-purpose, stand-alone 
+		  language. Lua is free software.
+		  This package contains the Lua shared libraries, needed by other programs.
+		 http://www.lua.org/
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libmnl
+		tristate "libmnl....................... Minimalistic user-space library for Netlink"
+		default y if DEFAULT_libmnl
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 libmnl is a minimalistic user-space library oriented to Netlink developers.
+		  There are a lot of common tasks in parsing, validating, constructing of
+		  both the Netlink header and TLVs that are repetitive and easy to get wrong.
+		  This library aims to provide simple helpers that allows you to re-use code
+		  and to avoid re-inventing the wheel. The main features of this library are:
+		  .
+		  * Small: the shared library requires around 30KB for an x86-based computer.
+		  .
+		  * Simple: this library avoids complexity and elaborated abstractions that
+		    tend to hide Netlink details.
+		  .
+		  * Easy to use: the library simplifies the work for Netlink-wise developers.
+		    It provides functions to make socket handling, message building, validating,
+		    parsing and sequence tracking, easier.
+		  .
+		  * Easy to re-use: you can use the library to build your own abstraction layer
+		    on top of this library.
+		  .
+		  * Decoupling: the interdependency of the main bricks that compose the library
+		    is reduced, i.e. the library provides many helpers, but the programmer is not
+		    forced to use them.
+		 http://www.netfilter.org/projects/libmnl/
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libnetfilter-conntrack
+		tristate "libnetfilter-conntrack"
+		default y if DEFAULT_libnetfilter-conntrack
+		default m if ALL
+		select PACKAGE_libmnl
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libnfnetlink
+		select PACKAGE_kmod-nf-conntrack-netlink
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 libnetfilter_conntrack is a userspace library providing a programming
+		  interface (API) to the in-kernel connection tracking state table. The
+		  library libnetfilter_conntrack has been previously known as
+		  libnfnetlink_conntrack and libctnetlink. This library is currently
+		  used by conntrack-tools among many other applications.
+		 http://www.netfilter.org/projects/libnetfilter_conntrack/
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libnfnetlink
+		tristate "libnfnetlink"
+		default y if DEFAULT_libnfnetlink
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 libnfnetlink is is the low-level library for netfilter related kernel/userspace communication.
+		  It provides a generic messaging infrastructure for in-kernel netfilter subsystems
+		  (such as nfnetlink_log, nfnetlink_queue, nfnetlink_conntrack) and their respective users
+		  and/or management tools in userspace.
+		 http://netfilter.org/projects/libnfnetlink/
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_libnftnl
+		tristate "libnftnl........... Low-level netlink library for the nf_tables subsystem"
+		default y if DEFAULT_libnftnl
+		default m if ALL
+		select PACKAGE_libmnl
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 libnftnl is a userspace library providing a low-level netlink
+		  programming interface (API) to the in-kernel nf_tables subsystem.
+		 http://www.netfilter.org/projects/libnftnl
+		 Steven Barth <steven@midlink.org>
+
+	config PACKAGE_libnghttp2
+		tristate "libnghttp2.............. Library implementing the framing layer of HTTP/2"
+		default y if DEFAULT_libnghttp2
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 C library implementing the framing layer of the HTTP/2 protocol. It can be used to build a HTTP/2-capable HTTP client or server
+		 Hans Dedecker <dedeckeh@gmail.com>
+
+	config PACKAGE_libnl-tiny
+		tristate "libnl-tiny........................................ netlink socket library"
+		default y if DEFAULT_libnl-tiny
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 This package contains a stripped down version of libnl
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_libubox
+		tristate "libubox............................................ Basic utility library"
+		default y if DEFAULT_libubox
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Basic utility library
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_libubox-lua
+		tristate "libubox-lua............ Lua binding for the OpenWrt Basic utility library"
+		default y if DEFAULT_libubox-lua
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libubox
+		help
+		 Lua binding for the OpenWrt Basic utility library
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_libubus
+		tristate "libubus....................................... OpenWrt RPC client library"
+		default y if DEFAULT_libubus
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libubox
+		help
+		 OpenWrt RPC client library
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_libubus-lua
+		tristate "libubus-lua....................... Lua binding for the OpenWrt RPC client"
+		default y if DEFAULT_libubus-lua
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libubus
+		help
+		 Lua binding for the OpenWrt RPC client
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_libuci
+		tristate "libuci........... C library for the Unified Configuration Interface (UCI)"
+		default y if DEFAULT_libuci
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libubox
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 C library for the Unified Configuration Interface (UCI)
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_libuci-lua
+		tristate "libuci-lua............................................ Lua plugin for UCI"
+		default y if DEFAULT_libuci-lua
+		default m if ALL
+		select PACKAGE_libuci
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Lua plugin for UCI
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_zlib
+		tristate "zlib................. Library implementing the deflate compression method"
+		default y if DEFAULT_zlib
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 zlib is a lossless data-compression library.
+		  This package includes the shared library.
+		 http://www.zlib.net/
+		 
+
+
+		source "feeds/base/package/libs/zlib/Config.in"
+
+endmenu
+
+menu "LuCI"
+
+menu "1. Collections"
+	config PACKAGE_luci
+		tristate "luci"
+		default y if DEFAULT_luci
+		default m if ALL
+		select PACKAGE_luci-proto-ppp
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_uhttpd-mod-ubus
+		select PACKAGE_libiwinfo-lua
+		select PACKAGE_luci-app-firewall
+		select PACKAGE_luci-mod-admin-full
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_uhttpd
+		select PACKAGE_luci-proto-ipv6 if IPV6
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_luci-theme-bootstrap
+		help
+		 Standard OpenWrt set including full admin with ppp support and the default Bootstrap theme
+		 
+
+endmenu
+menu "2. Modules"
+	config PACKAGE_luci-base
+		tristate "luci-base............................................ LuCI core libraries"
+		default y if DEFAULT_luci-base
+		default m if ALL
+		select PACKAGE_rpcd
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_luci-lib-ip
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_lua
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libuci-lua
+		select PACKAGE_luci-lib-nixio
+		select PACKAGE_libubus-lua
+		select PACKAGE_luci-lib-jsonc
+		help
+		 LuCI core libraries
+		 
+
+
+	   config LUCI_SRCDIET
+		bool "Minify Lua sources"
+		default n
+	
+	   menu "Translations"
+	
+	     config LUCI_LANG_hu
+		   tristate "Hungarian (hu)" 
+	
+	     config LUCI_LANG_pt
+		   tristate "Portuguese (pt)" 
+	
+	     config LUCI_LANG_sk
+		   tristate "Slovak (sk)" 
+	
+	     config LUCI_LANG_ko
+		   tristate "Korean (ko)" 
+	
+	     config LUCI_LANG_en
+		   tristate "English (en)" 
+	
+	     config LUCI_LANG_el
+		   tristate "Greek (el)" 
+	
+	     config LUCI_LANG_uk
+		   tristate "Ukrainian (uk)" 
+	
+	     config LUCI_LANG_ja
+		   tristate "Japanese (ja)" 
+	
+	     config LUCI_LANG_vi
+		   tristate "Vietnamese (vi)" 
+	
+	     config LUCI_LANG_de
+		   tristate "German (de)" 
+	
+	     config LUCI_LANG_ro
+		   tristate "Romanian (ro)" 
+	
+	     config LUCI_LANG_ms
+		   tristate "Malay (ms)" 
+	
+	     config LUCI_LANG_pl
+		   tristate "Polish (pl)" 
+	
+	     config LUCI_LANG_zh-cn
+		   tristate "Chinese (zh-cn)" 
+	
+	     config LUCI_LANG_no
+		   tristate "Norwegian (no)" 
+	
+	     config LUCI_LANG_he
+		   tristate "Hebrew (he)" 
+	
+	     config LUCI_LANG_zh-tw
+		   tristate "Taiwanese (zh-tw)" 
+	
+	     config LUCI_LANG_tr
+		   tristate "Turkish (tr)" 
+	
+	     config LUCI_LANG_sv
+		   tristate "Swedish (sv)" 
+	
+	     config LUCI_LANG_ru
+		   tristate "Russian (ru)" 
+	
+	     config LUCI_LANG_ca
+		   tristate "Catalan (ca)" 
+	
+	     config LUCI_LANG_es
+		   tristate "Spanish (es)" 
+	
+	     config LUCI_LANG_pt-br
+		   tristate "Brazialian Portuguese (pt-br)" 
+	
+	     config LUCI_LANG_cs
+		   tristate "Czech (cs)" 
+	
+	     config LUCI_LANG_fr
+		   tristate "French (fr)" 
+	
+	     config LUCI_LANG_it
+		   tristate "Italian (it)"
+	
+	   endmenu
+
+	config PACKAGE_luci-mod-admin-full
+		tristate "luci-mod-admin-full. LuCI Administration - full-featured for full control"
+		default y if DEFAULT_luci-mod-admin-full
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 LuCI Administration - full-featured for full control
+		 
+
+endmenu
+menu "3. Applications"
+	config PACKAGE_luci-app-firewall
+		tristate "luci-app-firewall................ Firewall and Portforwarding application"
+		default y if DEFAULT_luci-app-firewall
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Firewall and Portforwarding application
+		 
+
+endmenu
+menu "4. Themes"
+	config PACKAGE_luci-theme-bootstrap
+		tristate "luci-theme-bootstrap........................... Bootstrap Theme (default)"
+		default y if DEFAULT_luci-theme-bootstrap
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Bootstrap Theme (default)
+		 
+
+endmenu
+menu "5. Protocols"
+	config PACKAGE_luci-proto-ipv6
+		tristate "luci-proto-ipv6........... Support for DHCPv6/6in4/6to4/6rd/DS-Lite/aiccu"
+		default y if DEFAULT_luci-proto-ipv6
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Support for DHCPv6/6in4/6to4/6rd/DS-Lite/aiccu
+		 
+
+	config PACKAGE_luci-proto-ppp
+		tristate "luci-proto-ppp.......................... Support for PPP/PPPoE/PPPoA/PPtP"
+		default y if DEFAULT_luci-proto-ppp
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Support for PPP/PPPoE/PPPoA/PPtP
+		 
+
+endmenu
+menu "6. Libraries"
+	config PACKAGE_luci-lib-ip
+		tristate "luci-lib-ip....... Lua library for IP calculation and routing information"
+		default y if DEFAULT_luci-lib-ip
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_libnl-tiny
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Lua library for IP calculation and routing information
+		 
+
+	config PACKAGE_luci-lib-jsonc
+		tristate "luci-lib-jsonc.................................... Lua binding for JSON-C"
+		default y if DEFAULT_luci-lib-jsonc
+		default m if ALL
+		select PACKAGE_libjson-c
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_liblua
+		help
+		 Lua binding for JSON-C
+		 
+
+	config PACKAGE_luci-lib-nixio
+		tristate "luci-lib-nixio....................................... NIXIO POSIX library"
+		default y if DEFAULT_luci-lib-nixio
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libopenssl if PACKAGE_luci-lib-nixio_openssl
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_libwolfssl if PACKAGE_luci-lib-nixio_cyassl
+		help
+		 NIXIO POSIX library
+		 
+
+endmenu
+	config PACKAGE_luci-i18n-base-ca
+		tristate 
+		default y if DEFAULT_luci-i18n-base-ca
+		default LUCI_LANG_ca||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Català (Catalan)
+		 
+
+	config PACKAGE_luci-i18n-base-cs
+		tristate 
+		default y if DEFAULT_luci-i18n-base-cs
+		default LUCI_LANG_cs||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - Čeština (Czech)
+		 
+
+	config PACKAGE_luci-i18n-base-de
+		tristate 
+		default y if DEFAULT_luci-i18n-base-de
+		default LUCI_LANG_de||(ALL&&m)
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-base - Deutsch (German)
+		 
+
+	config PACKAGE_luci-i18n-base-el
+		tristate 
+		default y if DEFAULT_luci-i18n-base-el
+		default LUCI_LANG_el||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - Ελληνικά (Greek)
+		 
+
+	config PACKAGE_luci-i18n-base-en
+		tristate 
+		default y if DEFAULT_luci-i18n-base-en
+		default LUCI_LANG_en||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - English
+		 
+
+	config PACKAGE_luci-i18n-base-es
+		tristate 
+		default y if DEFAULT_luci-i18n-base-es
+		default LUCI_LANG_es||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Español (Spanish)
+		 
+
+	config PACKAGE_luci-i18n-base-fr
+		tristate 
+		default y if DEFAULT_luci-i18n-base-fr
+		default LUCI_LANG_fr||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - Français (French)
+		 
+
+	config PACKAGE_luci-i18n-base-he
+		tristate 
+		default y if DEFAULT_luci-i18n-base-he
+		default LUCI_LANG_he||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-base - עִבְרִית (Hebrew)
+		 
+
+	config PACKAGE_luci-i18n-base-hu
+		tristate 
+		default y if DEFAULT_luci-i18n-base-hu
+		default LUCI_LANG_hu||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - Magyar (Hungarian)
+		 
+
+	config PACKAGE_luci-i18n-base-it
+		tristate 
+		default y if DEFAULT_luci-i18n-base-it
+		default LUCI_LANG_it||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Italiano (Italian)
+		 
+
+	config PACKAGE_luci-i18n-base-ja
+		tristate 
+		default y if DEFAULT_luci-i18n-base-ja
+		default LUCI_LANG_ja||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - 日本語 (Japanese)
+		 
+
+	config PACKAGE_luci-i18n-base-ko
+		tristate 
+		default y if DEFAULT_luci-i18n-base-ko
+		default LUCI_LANG_ko||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-base - 한국어 (Korean)
+		 
+
+	config PACKAGE_luci-i18n-base-ms
+		tristate 
+		default y if DEFAULT_luci-i18n-base-ms
+		default LUCI_LANG_ms||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Bahasa Melayu (Malay)
+		 
+
+	config PACKAGE_luci-i18n-base-no
+		tristate 
+		default y if DEFAULT_luci-i18n-base-no
+		default LUCI_LANG_no||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Norsk (Norwegian)
+		 
+
+	config PACKAGE_luci-i18n-base-pl
+		tristate 
+		default y if DEFAULT_luci-i18n-base-pl
+		default LUCI_LANG_pl||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - Polski (Polish)
+		 
+
+	config PACKAGE_luci-i18n-base-pt
+		tristate 
+		default y if DEFAULT_luci-i18n-base-pt
+		default LUCI_LANG_pt||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Português (Portuguese)
+		 
+
+	config PACKAGE_luci-i18n-base-pt-br
+		tristate 
+		default y if DEFAULT_luci-i18n-base-pt-br
+		default LUCI_LANG_pt-br||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		help
+		 Translation for luci-base - Português do Brasil (Brazialian Portuguese)
+		 
+
+	config PACKAGE_luci-i18n-base-ro
+		tristate 
+		default y if DEFAULT_luci-i18n-base-ro
+		default LUCI_LANG_ro||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-base - Română (Romanian)
+		 
+
+	config PACKAGE_luci-i18n-base-ru
+		tristate 
+		default y if DEFAULT_luci-i18n-base-ru
+		default LUCI_LANG_ru||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		help
+		 Translation for luci-base - Русский (Russian)
+		 
+
+	config PACKAGE_luci-i18n-base-sk
+		tristate 
+		default y if DEFAULT_luci-i18n-base-sk
+		default LUCI_LANG_sk||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-base - Slovenčina (Slovak)
+		 
+
+	config PACKAGE_luci-i18n-base-sv
+		tristate 
+		default y if DEFAULT_luci-i18n-base-sv
+		default LUCI_LANG_sv||(ALL&&m)
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-base - Svenska (Swedish)
+		 
+
+	config PACKAGE_luci-i18n-base-tr
+		tristate 
+		default y if DEFAULT_luci-i18n-base-tr
+		default LUCI_LANG_tr||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		help
+		 Translation for luci-base - Türkçe (Turkish)
+		 
+
+	config PACKAGE_luci-i18n-base-uk
+		tristate 
+		default y if DEFAULT_luci-i18n-base-uk
+		default LUCI_LANG_uk||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-base
+		help
+		 Translation for luci-base - украї́нська (Ukrainian)
+		 
+
+	config PACKAGE_luci-i18n-base-vi
+		tristate 
+		default y if DEFAULT_luci-i18n-base-vi
+		default LUCI_LANG_vi||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Translation for luci-base - Tiếng Việt (Vietnamese)
+		 
+
+	config PACKAGE_luci-i18n-base-zh-cn
+		tristate 
+		default y if DEFAULT_luci-i18n-base-zh-cn
+		default LUCI_LANG_zh-cn||(ALL&&m)
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-base - 中文 (Chinese)
+		 
+
+	config PACKAGE_luci-i18n-base-zh-tw
+		tristate 
+		default y if DEFAULT_luci-i18n-base-zh-tw
+		default LUCI_LANG_zh-tw||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-base
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-base - 臺灣華語 (Taiwanese)
+		 
+
+	config PACKAGE_luci-i18n-firewall-ca
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-ca
+		default LUCI_LANG_ca||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		help
+		 Translation for luci-app-firewall - Català (Catalan)
+		 
+
+	config PACKAGE_luci-i18n-firewall-cs
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-cs
+		default LUCI_LANG_cs||(ALL&&m)
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Čeština (Czech)
+		 
+
+	config PACKAGE_luci-i18n-firewall-de
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-de
+		default LUCI_LANG_de||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-app-firewall - Deutsch (German)
+		 
+
+	config PACKAGE_luci-i18n-firewall-el
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-el
+		default LUCI_LANG_el||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - Ελληνικά (Greek)
+		 
+
+	config PACKAGE_luci-i18n-firewall-en
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-en
+		default LUCI_LANG_en||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - English
+		 
+
+	config PACKAGE_luci-i18n-firewall-es
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-es
+		default LUCI_LANG_es||(ALL&&m)
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Español (Spanish)
+		 
+
+	config PACKAGE_luci-i18n-firewall-fr
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-fr
+		default LUCI_LANG_fr||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - Français (French)
+		 
+
+	config PACKAGE_luci-i18n-firewall-he
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-he
+		default LUCI_LANG_he||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - עִבְרִית (Hebrew)
+		 
+
+	config PACKAGE_luci-i18n-firewall-hu
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-hu
+		default LUCI_LANG_hu||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - Magyar (Hungarian)
+		 
+
+	config PACKAGE_luci-i18n-firewall-it
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-it
+		default LUCI_LANG_it||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Italiano (Italian)
+		 
+
+	config PACKAGE_luci-i18n-firewall-ja
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-ja
+		default LUCI_LANG_ja||(ALL&&m)
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - 日本語 (Japanese)
+		 
+
+	config PACKAGE_luci-i18n-firewall-ko
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-ko
+		default LUCI_LANG_ko||(ALL&&m)
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - 한국어 (Korean)
+		 
+
+	config PACKAGE_luci-i18n-firewall-ms
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-ms
+		default LUCI_LANG_ms||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - Bahasa Melayu (Malay)
+		 
+
+	config PACKAGE_luci-i18n-firewall-no
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-no
+		default LUCI_LANG_no||(ALL&&m)
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-app-firewall - Norsk (Norwegian)
+		 
+
+	config PACKAGE_luci-i18n-firewall-pl
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-pl
+		default LUCI_LANG_pl||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Polski (Polish)
+		 
+
+	config PACKAGE_luci-i18n-firewall-pt
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-pt
+		default LUCI_LANG_pt||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - Português (Portuguese)
+		 
+
+	config PACKAGE_luci-i18n-firewall-pt-br
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-pt-br
+		default LUCI_LANG_pt-br||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		help
+		 Translation for luci-app-firewall - Português do Brasil (Brazialian Portuguese)
+		 
+
+	config PACKAGE_luci-i18n-firewall-ro
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-ro
+		default LUCI_LANG_ro||(ALL&&m)
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Română (Romanian)
+		 
+
+	config PACKAGE_luci-i18n-firewall-ru
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-ru
+		default LUCI_LANG_ru||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Translation for luci-app-firewall - Русский (Russian)
+		 
+
+	config PACKAGE_luci-i18n-firewall-sk
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-sk
+		default LUCI_LANG_sk||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - Slovenčina (Slovak)
+		 
+
+	config PACKAGE_luci-i18n-firewall-sv
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-sv
+		default LUCI_LANG_sv||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Svenska (Swedish)
+		 
+
+	config PACKAGE_luci-i18n-firewall-tr
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-tr
+		default LUCI_LANG_tr||(ALL&&m)
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Türkçe (Turkish)
+		 
+
+	config PACKAGE_luci-i18n-firewall-uk
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-uk
+		default LUCI_LANG_uk||(ALL&&m)
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - украї́нська (Ukrainian)
+		 
+
+	config PACKAGE_luci-i18n-firewall-vi
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-vi
+		default LUCI_LANG_vi||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - Tiếng Việt (Vietnamese)
+		 
+
+	config PACKAGE_luci-i18n-firewall-zh-cn
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-zh-cn
+		default LUCI_LANG_zh-cn||(ALL&&m)
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Translation for luci-app-firewall - 中文 (Chinese)
+		 
+
+	config PACKAGE_luci-i18n-firewall-zh-tw
+		tristate 
+		default y if DEFAULT_luci-i18n-firewall-zh-tw
+		default LUCI_LANG_zh-tw||(ALL&&m)
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_luci-app-firewall
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 Translation for luci-app-firewall - 臺灣華語 (Taiwanese)
+		 
+
+endmenu
+
+menu "Network"
+
+menu "File Transfer"
+	config PACKAGE_curl
+		tristate "curl.................................. A client-side URL transfer utility"
+		default y if DEFAULT_curl
+		default m if ALL
+		select PACKAGE_libcurl
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 A client-side URL transfer utility
+		 http://curl.haxx.se/
+		 Imre Kaloz <kaloz@openwrt.org>
+
+endmenu
+menu "Firewall"
+	menuconfig PACKAGE_ip6tables
+		tristate "ip6tables.............................. IPv6 firewall administration tool"
+		default y if DEFAULT_ip6tables
+		default m if ALL
+		select PACKAGE_iptables
+		select PACKAGE_kmod-ip6tables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		depends on IPV6
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 IPv6 firewall administration tool
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_ip6tables-extra
+		tristate "ip6tables-extra............................. IPv6 header matching modules"
+		default y if DEFAULT_ip6tables-extra
+		default m if ALL
+		depends on IPV6
+		select PACKAGE_kmod-ip6tables-extra
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_ip6tables
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 IPv6 header matching modules
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_ip6tables-mod-nat
+		tristate "ip6tables-mod-nat.................................... IPv6 NAT extensions"
+		default y if DEFAULT_ip6tables-mod-nat
+		default m if ALL
+		depends on IPV6
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_ip6tables
+		select PACKAGE_kmod-ipt-nat6
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 iptables extensions for IPv6-NAT targets.
+		 http://netfilter.org/
+		 
+
+	menuconfig PACKAGE_iptables
+		tristate "iptables................................. IP firewall administration tool"
+		default y if DEFAULT_iptables
+		default m if ALL
+		select PACKAGE_libxtables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libip6tc if IPV6
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_kmod-ipt-core
+		select PACKAGE_libip4tc
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 IP firewall administration tool.
+		 
+		  Matches:
+		   - icmp
+		   - tcp
+		   - udp
+		   - comment
+		   - conntrack
+		   - limit
+		   - mac
+		   - mark
+		   - multiport
+		   - set
+		   - state
+		   - time
+		 
+		  Targets:
+		   - ACCEPT
+		   - CT
+		   - DNAT
+		   - DROP
+		   - REJECT
+		   - LOG
+		   - MARK
+		   - MASQUERADE
+		   - REDIRECT
+		   - SET
+		   - SNAT
+		   - TCPMSS
+		 
+		  Tables:
+		   - filter
+		   - mangle
+		   - nat
+		   - raw
+		 
+		 http://netfilter.org/
+		 
+
+
+	  config IPTABLES_CONNLABEL
+		bool "Enable Connlabel support"
+		default n
+		help
+			This enable connlabel support in iptables.
+	
+	  config IPTABLES_NFTABLES
+		bool "Enable Nftables support"
+		default n
+		help
+			This enable nftables support in iptables.
+
+	config PACKAGE_iptables-mod-checksum
+		tristate "iptables-mod-checksum....................... IP CHECKSUM target extension"
+		default y if DEFAULT_iptables-mod-checksum
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_kmod-ipt-checksum
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 iptables extension for the CHECKSUM calculation target
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-cluster
+		tristate "iptables-mod-cluster............................. Match cluster extension"
+		default y if DEFAULT_iptables-mod-cluster
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_kmod-ipt-cluster
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 iptables extensions for matching cluster.
+		 
+		  Netfilter (IPv4/IPv6) module for matching cluster
+		  This option allows you to build work-load-sharing clusters of
+		  network servers/stateful firewalls without having a dedicated
+		  load-balancing router/server/switch. Basically, this match returns
+		  true when the packet must be handled by this cluster node. Thus,
+		  all nodes see all packets and this match decides which node handles
+		  what packets. The work-load sharing algorithm is based on source
+		  address hashing.
+		 
+		  This module is usable for ipv4 and ipv6.
+		 
+		  If you select it, it enables kmod-ipt-cluster.
+		 
+		  see `iptables -m cluster --help` for more information.
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-clusterip
+		tristate "iptables-mod-clusterip............................... Clusterip extension"
+		default y if DEFAULT_iptables-mod-clusterip
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_iptables
+		select PACKAGE_kmod-ipt-clusterip
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 iptables extensions for CLUSTERIP.
+		  The CLUSTERIP target allows you to build load-balancing clusters of
+		  network servers without having a dedicated load-balancing
+		  router/server/switch.
+		 
+		  If you select it, it enables kmod-ipt-clusterip.
+		 
+		  see `iptables -j CLUSTERIP --help` for more information.
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-conntrack-extra
+		tristate "iptables-mod-conntrack-extra........ Extra connection tracking extensions"
+		default y if DEFAULT_iptables-mod-conntrack-extra
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_kmod-ipt-conntrack-extra
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Extra iptables extensions for connection tracking.
+		 
+		  Matches:
+		   - connbytes
+		   - connlimit
+		   - connmark
+		   - recent
+		   - helper
+		 
+		  Targets:
+		   - CONNMARK
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-conntrack-label
+		tristate "iptables-mod-conntrack-label...... Connection tracking labeling extension"
+		default y if DEFAULT_iptables-mod-conntrack-label
+		default y if IPTABLES_CONNLABEL
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on IPTABLES_CONNLABEL
+		select PACKAGE_kmod-ipt-conntrack-label
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		help
+		 Match and set label(s) on connection tracking entries
+		 
+		  Matches:
+		   - connlabel
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-extra
+		tristate "iptables-mod-extra....................... Other extra iptables extensions"
+		default y if DEFAULT_iptables-mod-extra
+		default m if ALL
+		select PACKAGE_kmod-ipt-extra
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Other extra iptables extensions.
+		 
+		  Matches:
+		   - addrtype
+		   - condition
+		   - owner
+		   - physdev (if ebtables is enabled)
+		   - pkttype
+		   - quota
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-filter
+		tristate "iptables-mod-filter........................ Content inspection extensions"
+		default y if DEFAULT_iptables-mod-filter
+		default m if ALL
+		select PACKAGE_kmod-ipt-filter
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 iptables extensions for packet content inspection.
+		 Includes support for:
+		 
+		  Matches:
+		   - string
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-hashlimit
+		tristate "iptables-mod-hashlimit................................ hashlimit matching"
+		default y if DEFAULT_iptables-mod-hashlimit
+		default m if ALL
+		select PACKAGE_kmod-ipt-hashlimit
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 iptables extensions for hashlimit matching
+		 
+		  Matches:
+		   - hashlimit
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-ipopt
+		tristate "iptables-mod-ipopt........................... IP/Packet option extensions"
+		default y if DEFAULT_iptables-mod-ipopt
+		default m if ALL
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_kmod-ipt-ipopt
+		help
+		 iptables extensions for matching/changing IP packet options.
+		 
+		  Matches:
+		   - dscp
+		   - ecn
+		   - length
+		   - statistic
+		   - tcpmss
+		   - unclean
+		   - hl
+		 
+		  Targets:
+		   - DSCP
+		   - CLASSIFY
+		   - ECN
+		   - HL
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-iprange
+		tristate "iptables-mod-iprange.................................. IP range extension"
+		default y if DEFAULT_iptables-mod-iprange
+		default m if ALL
+		select PACKAGE_kmod-ipt-iprange
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		help
+		 iptables extensions for matching ip ranges.
+		 
+		  Matches:
+		   - iprange
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-ipsec
+		tristate "iptables-mod-ipsec...................................... IPsec extensions"
+		default y if DEFAULT_iptables-mod-ipsec
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_kmod-ipt-ipsec
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 iptables extensions for matching ipsec traffic.
+		 
+		  Matches:
+		   - ah
+		   - esp
+		   - policy
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-led
+		tristate "iptables-mod-led.......................... LED trigger iptables extension"
+		default y if DEFAULT_iptables-mod-led
+		default m if ALL
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_kmod-ipt-led
+		help
+		 iptables extension for triggering a LED.
+		 
+		  Targets:
+		   - LED
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-nat-extra
+		tristate "iptables-mod-nat-extra.............................. Extra NAT extensions"
+		default y if DEFAULT_iptables-mod-nat-extra
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_kmod-ipt-nat-extra
+		select PACKAGE_libc
+		help
+		 iptables extensions for extra NAT targets.
+		 
+		  Targets:
+		   - MIRROR
+		   - NETMAP
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-nflog
+		tristate "iptables-mod-nflog................................ Netfilter NFLOG target"
+		default y if DEFAULT_iptables-mod-nflog
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_kmod-ipt-nflog
+		select PACKAGE_kmod-nfnetlink-log
+		help
+		 iptables extension for user-space logging via NFNETLINK.
+		 
+		  Includes:
+		   - libxt_NFLOG
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-nfqueue
+		tristate "iptables-mod-nfqueue............................ Netfilter NFQUEUE target"
+		default y if DEFAULT_iptables-mod-nfqueue
+		default m if ALL
+		select PACKAGE_kmod-ipt-nfqueue
+		select PACKAGE_kmod-nfnetlink-queue
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		help
+		 iptables extension for user-space queuing via NFNETLINK.
+		 
+		  Includes:
+		   - libxt_NFQUEUE
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-rpfilter
+		tristate "iptables-mod-rpfilter........................ rpfilter iptables extension"
+		default y if DEFAULT_iptables-mod-rpfilter
+		default m if ALL
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_kmod-ipt-rpfilter
+		select PACKAGE_libc
+		help
+		 iptables extensions for reverse path filter test on a packet
+		 
+		  Matches:
+		   - rpfilter
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-tee
+		tristate "iptables-mod-tee................................. TEE iptables extensions"
+		default y if DEFAULT_iptables-mod-tee
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_kmod-ipt-tee
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 TEE iptables extensions.
+		 
+		  Targets:
+		   - TEE
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-tproxy
+		tristate "iptables-mod-tproxy................ Transparent proxy iptables extensions"
+		default y if DEFAULT_iptables-mod-tproxy
+		default m if ALL
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_kmod-ipt-tproxy
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		help
+		 Transparent proxy iptables extensions.
+		 
+		  Matches:
+		   - socket
+		 
+		  Targets:
+		   - TPROXY
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-trace
+		tristate "iptables-mod-trace................................ Netfilter TRACE target"
+		default y if DEFAULT_iptables-mod-trace
+		default m if ALL
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_kmod-ipt-debug
+		select PACKAGE_libpthread if USE_GLIBC
+		depends on PACKAGE_iptables
+		help
+		 iptables extension for TRACE target
+		 
+		  Includes:
+		   - libxt_TRACE
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-u32
+		tristate "iptables-mod-u32................................. U32 iptables extensions"
+		default y if DEFAULT_iptables-mod-u32
+		default m if ALL
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_kmod-ipt-u32
+		help
+		 U32 iptables extensions.
+		 
+		  Matches:
+		   - u32
+		 
+		 http://netfilter.org/
+		 
+
+	config PACKAGE_iptables-mod-ulog
+		tristate "iptables-mod-ulog.............................. user-space packet logging"
+		default y if DEFAULT_iptables-mod-ulog
+		default m if ALL
+		select PACKAGE_kmod-ipt-ulog
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		depends on PACKAGE_iptables
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 iptables extensions for user-space packet logging.
+		 
+		  Targets:
+		   - ULOG
+		 
+		 http://netfilter.org/
+		 
+
+endmenu
+menu "Web Servers/Proxies"
+	config PACKAGE_uhttpd
+		tristate "uhttpd........................ uHTTPd - tiny, single threaded HTTP server"
+		default y if DEFAULT_uhttpd
+		default m if ALL
+		select PACKAGE_libubox
+		select PACKAGE_libjson-script
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libc
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libblobmsg-json
+		help
+		 uHTTPd is a tiny single threaded HTTP server with TLS, CGI and Lua
+		  support. It is intended as a drop-in replacement for the Busybox
+		  HTTP daemon.
+		 Felix Fietkau <nbd@nbd.name>
+
+
+	  config uhttpd_lua
+	    depends on PACKAGE_uhttpd-mod-lua
+	    bool "Enable Integrated Lua interpreter"
+		default y
+
+	config PACKAGE_uhttpd-mod-lua
+		tristate "uhttpd-mod-lua... uHTTPd - tiny, single threaded HTTP server (Lua plugin)"
+		default y if DEFAULT_uhttpd-mod-lua
+		default m if ALL
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_liblua
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_uhttpd
+		help
+		 The Lua plugin adds a CGI-like Lua runtime interface to uHTTPd.
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_uhttpd-mod-ubus
+		tristate "uhttpd-mod-ubus. uHTTPd - tiny, single threaded HTTP server (ubus plugin)"
+		default y if DEFAULT_uhttpd-mod-ubus
+		default m if ALL
+		select PACKAGE_libubus
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		depends on PACKAGE_uhttpd
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libblobmsg-json
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 The ubus plugin adds a HTTP/JSON RPC proxy for ubus and publishes the
+		  session.* namespace and procedures.
+		 Felix Fietkau <nbd@nbd.name>
+
+endmenu
+endmenu
+
+menu "Utilities"
+
+	config PACKAGE_AllotMac
+		tristate "AllotMac........................................ LS1012A Allot Mac Server"
+		default y if DEFAULT_AllotMac
+		default m if ALL
+		select PACKAGE_libpthread
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libjson-c
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libcurl
+		select PACKAGE_libc
+		help
+		 Run in LS1012A development board,This is a Allot Mac client,Allot Mac to break-end server  
+		 
+
+	config PACKAGE_iwinfo
+		tristate "iwinfo.......................... Generalized Wireless Information utility"
+		default y if DEFAULT_iwinfo
+		default m if ALL||ALL_NONSHARED
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libiwinfo
+		select PACKAGE_libc
+		help
+		 Command line frontend for the wireless information library.
+		 Jo-Philipp Wich <jo@mein.io>
+
+	config PACKAGE_jshn
+		tristate "jshn................................................. JSON SHell Notation"
+		default y if DEFAULT_jshn
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_libubox
+		select PACKAGE_libjson-c
+		select PACKAGE_libpthread if USE_GLIBC
+		select PACKAGE_libblobmsg-json
+		select PACKAGE_librt if USE_GLIBC
+		help
+		 Library for parsing and generating JSON from shell scripts
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_ldconfig
+		tristate "ldconfig............................... Shared library path configuration"
+		default y if DEFAULT_ldconfig
+		default m if ALL||ALL_NONSHARED
+		depends on !USE_MUSL
+		help
+		 Shared library path configuration
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldconfig
+	
+		config LDCONFIG_ROOT_DIR
+			string
+			prompt "ldconfig base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldconfig
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LDCONFIG_FILE_SPEC
+			string
+			prompt "ldconfig file"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldconfig
+			default "./sbin/ldconfig"
+	
+		endmenu
+
+	config PACKAGE_ldd
+		tristate "ldd.................................................... LDD trace utility"
+		default y if DEFAULT_ldd
+		default m if ALL||ALL_NONSHARED
+		depends on !USE_MUSL
+		help
+		 LDD trace utility
+		 Felix Fietkau <nbd@nbd.name>
+
+
+		menu "Configuration"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldd
+	
+		config LDD_ROOT_DIR
+			string
+			prompt "ldd trace utility base directory"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldd
+			default TOOLCHAIN_ROOT  if !NATIVE_TOOLCHAIN
+			default "/"  if NATIVE_TOOLCHAIN
+	
+		config LDD_FILE_SPEC
+			string
+			prompt "ldd trace utility file"
+			depends on EXTERNAL_TOOLCHAIN && PACKAGE_ldd
+			default "./usr/bin/ldd"
+	
+		endmenu
+
+	config PACKAGE_libjson-script
+		tristate "libjson-script.................. Minimalistic JSON based scripting engine"
+		default y if DEFAULT_libjson-script
+		default m if ALL
+		select PACKAGE_libubox
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 Minimalistic JSON based scripting engine
+		 Felix Fietkau <nbd@nbd.name>
+
+	config PACKAGE_openssl-util
+		tristate "openssl-util........................... Open source SSL toolkit (utility)"
+		default y if DEFAULT_openssl-util
+		default m if ALL
+		select PACKAGE_libc
+		select PACKAGE_libssp if SSP_SUPPORT
+		select PACKAGE_librt if USE_GLIBC
+		select PACKAGE_libopenssl
+		select PACKAGE_libpthread if USE_GLIBC
+		help
+		 The OpenSSL Project is a collaborative effort to develop a robust,
+		 commercial-grade, full-featured, and Open Source toolkit implementing the Secure
+		 Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well
+		 as a full-strength general purpose cryptography library.
+		 This package contains the OpenSSL command-line utility.
+		 http://www.openssl.org/
+		 
+
+endmenu
+

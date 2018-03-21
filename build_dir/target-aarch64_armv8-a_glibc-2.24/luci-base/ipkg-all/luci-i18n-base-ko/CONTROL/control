@@ -1,0 +1,8 @@
+Package: luci-i18n-base-ko
+Version: git-17.290.79498-d3f0685-1
+Depends: libc, libssp, librt, libpthread, luci-base
+Source: feeds/luci/modules/luci-base
+Section: luci
+Architecture: all
+Installed-Size: 10707
+Description:  Translation for luci-base - 한국어 (Korean)

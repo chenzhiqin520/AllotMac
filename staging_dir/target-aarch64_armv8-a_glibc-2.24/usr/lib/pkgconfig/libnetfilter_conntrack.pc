@@ -1,0 +1,16 @@
+# libnetfilter_conntrack pkg-config file
+
+prefix=/usr
+exec_prefix=/usr
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libnetfilter_conntrack
+Description: netfilter userspace conntrack access library
+URL: http://netfilter.org/projects/libnetfilter_conntrack/
+Version: 1.0.7
+Requires: libnfnetlink
+Conflicts:
+Libs: -L${libdir} -lnetfilter_conntrack
+Libs.private: -L/opt/lede-sdk-layerscape-64b_gcc-5.4.0_glibc-2.24.Linux-i686/staging_dir/target-aarch64_armv8-a_glibc-2.24/usr/lib -lnfnetlink
+Cflags: -I${includedir}

@@ -1,0 +1,11 @@
+Package: curl
+Version: 7.59.0-1
+Depends: libc, libssp, librt, libpthread, libcurl
+Source: feeds/base/package/network/utils/curl
+License: MIT
+LicenseFiles: COPYING
+Section: net
+Maintainer: Imre Kaloz <kaloz@openwrt.org>
+Architecture: aarch64_armv8-a
+Installed-Size: 43213
+Description:  A client-side URL transfer utility

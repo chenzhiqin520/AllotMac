@@ -1,0 +1,1 @@
+uci set luci.languages.ko='한국어 (Korean)'; uci commit luci
